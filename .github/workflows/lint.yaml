@@ -1,0 +1,19 @@
+name: OpenAPI Linting
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - openapi/**.yaml
+jobs:
+  openapi-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Task
+        uses: arduino/setup-task@v1
+
+      - name: Run linter
+        run: task api:lint

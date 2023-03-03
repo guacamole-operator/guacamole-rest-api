@@ -1,0 +1,773 @@
+openapi: 3.0.3
+info:
+  version: 1.5.0
+  title: Apache Guacamole REST API
+  description: Reverse-engineered documentation for the Apache Guacamole REST API.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+tags:
+  - name: Authentication
+    description: Authentication handling.
+  - name: User
+    description: User related operations.
+  - name: Connection
+    description: Conneciton related operations.
+servers:
+  - url: https://{tenant}/guacamole/api
+    variables:
+      tenant:
+        default: www
+        description: Your tenant ID.
+  - url: https://example.com/guacamole/api
+paths:
+  /tokens:
+    post:
+      tags:
+        - Authentication
+      summary: Generate token.
+      description: Generate a new authentication token.
+      operationId: generateToken
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRequest'
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
+        '403':
+          $ref: '#/components/responses/403'
+  /tokens/{token}:
+    delete:
+      tags:
+        - Authentication
+      summary: Delete token.
+      description: Delete authentication token.
+      operationId: deleteToken
+      security: []
+      parameters:
+        - name: token
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '404':
+          $ref: '#/components/responses/404'
+  /session/data/{data_source}/users:
+    get:
+      tags:
+        - User
+      summary: List users.
+      description: List all known users.
+      operationId: listUsers
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    post:
+      tags:
+        - User
+      summary: Create user.
+      description: Create a new user.
+      operationId: createUser
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+  /session/data/{data_source}/users/{username}:
+    get:
+      tags:
+        - User
+      summary: Get user.
+      description: Get user details.
+      operationId: getUser
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+        - $ref: '#/components/parameters/username'
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    put:
+      tags:
+        - User
+      summary: Update user.
+      description: Update user details.
+      operationId: updateUser
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+        - $ref: '#/components/parameters/username'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    delete:
+      tags:
+        - User
+      summary: Delete user.
+      description: Delete user.
+      operationId: deleteUser
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+        - $ref: '#/components/parameters/username'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  /session/data/{data_source}/users/{username}/userGroups:
+    patch:
+      tags:
+        - User
+      summary: Modify groups of user.
+      description: Modify groups of user.
+      operationId: modifyGroupsOfUser
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+        - $ref: '#/components/parameters/username'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchRequest'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  /session/data/{data_source}/users/{username}/permissions:
+    get:
+      tags:
+        - User
+      summary: Get user's permissions.
+      description: Get user's permissions.
+      operationId: getPermissionsOfUser
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+        - $ref: '#/components/parameters/username'
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Permissions'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    patch:
+      tags:
+        - User
+      summary: Modify permissions of user.
+      description: Modify permissions of user.
+      operationId: modifyPermissionsOfUser
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+        - $ref: '#/components/parameters/username'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchRequest'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  /session/data/{data_source}/userGroups:
+    get:
+      tags:
+        - User
+      summary: List user groups.
+      description: List all known user groups.
+      operationId: listUserGroups
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserGroups'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    post:
+      tags:
+        - User
+      summary: Create user group.
+      description: Create a new user groups.
+      operationId: createUserGroup
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserGroup'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+  /session/data/{data_source}/userGroups/{group}:
+    get:
+      tags:
+        - User
+      summary: Get user group.
+      description: Get user group.
+      operationId: getUserGroup
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+        - $ref: '#/components/parameters/group'
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserGroup'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    put:
+      tags:
+        - User
+      summary: Update user group.
+      description: Update user group.
+      operationId: updateUserGroup
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+        - $ref: '#/components/parameters/group'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserGroup'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    delete:
+      tags:
+        - User
+      summary: Delete user group.
+      description: Delete user group.
+      operationId: deleteUserGroup
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+        - $ref: '#/components/parameters/group'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  /session/data/{data_source}/userGroups/{group}/memberUsers:
+    patch:
+      tags:
+        - User
+      summary: Modify members of group.
+      description: Modify members of group.
+      operationId: modifyMembersOfGroup
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+        - $ref: '#/components/parameters/group'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchRequest'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  /session/data/{data_source}/userGroups/{group}/memberUserGroups:
+    patch:
+      tags:
+        - User
+      summary: Modify member groups of group.
+      description: Modify member groups of group.
+      operationId: modifyMemberGroupsOfGroup
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+        - $ref: '#/components/parameters/group'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchRequest'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  /session/data/{data_source}/activeConnections:
+    get:
+      tags:
+        - Connection
+      summary: List active connections.
+      description: List all active connections.
+      operationId: listActiveConnections
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActiveConnections'
+        '403':
+          $ref: '#/components/responses/403'
+    patch:
+      tags:
+        - Connection
+      summary: Remove active connection.
+      description: Remove active connection.
+      operationId: removeActiveConnection
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchRequest'
+            example:
+              - op: remove
+                path: /{activeConnectionIdentifier}
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: Guacamole-Token
+  schemas:
+    TokenRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      required:
+        - username
+        - password
+    Token:
+      type: object
+      properties:
+        authToken:
+          type: string
+        username:
+          type: string
+        dataSource:
+          type: string
+        availableDataSources:
+          type: array
+          items:
+            type: string
+      required:
+        - authToken
+        - username
+        - dataSource
+        - availableDataSources
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+        lastActive:
+          type: string
+          format: unix-time
+        attributes:
+          type: object
+          properties:
+            guac-email-address:
+              type: string
+              format: email
+              nullable: true
+            guac-organizational-role:
+              type: string
+              nullable: true
+            guac-full-name:
+              type: string
+              nullable: true
+            expired:
+              type: string
+              format: bool
+              nullable: true
+            timezone:
+              type: string
+              nullable: true
+            access-window-start:
+              type: string
+              nullable: true
+            guac-organization:
+              type: string
+              nullable: true
+            access-window-end:
+              type: string
+              nullable: true
+            disabled:
+              type: string
+              format: bool
+              nullable: true
+            valid-until:
+              type: string
+              format: date
+              nullable: true
+            valid-from:
+              type: string
+              format: date
+              nullable: true
+      required:
+        - username
+      example:
+        username: johndoe
+        attributes:
+          guac-email-address: johndoe@example.com
+          guac-organizational-role: user
+          guac-full-name: John Doe
+          expired: null
+          timezone: Europe/Berlin
+          access-window-start: '01:19:00'
+          guac-organization: Org
+          access-window-end: '02:20:00'
+          disabled: true
+          valid-until: '2023-03-19'
+          valid-from: '2023-03-05'
+    Users:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/User'
+      example:
+        johndoe:
+          username: johndoe
+          attributes:
+            guac-email-address: johndoe@example.com
+            guac-organizational-role: user
+            guac-full-name: John Doe
+            expired: null
+            timezone: Europe/Berlin
+            access-window-start: '01:19:00'
+            guac-organization: Org
+            access-window-end: '02:20:00'
+            disabled: true
+            valid-until: '2023-03-19'
+            valid-from: '2023-03-05'
+        johndoe2:
+          username: johndoe2
+          attributes:
+            guac-email-address: johndoe2@example.com
+            guac-organizational-role: user
+            guac-full-name: John Doe 2
+            expired: null
+            timezone: Europe/Berlin
+            access-window-start: '01:19:00'
+            guac-organization: Org
+            access-window-end: '02:20:00'
+            disabled: true
+            valid-until: '2023-03-19'
+            valid-from: '2023-03-05'
+    JSONPatchRequestAdd:
+      type: object
+      additionalProperties: false
+      properties:
+        path:
+          description: A JSON Pointer path.
+          type: string
+        op:
+          description: The operation to perform.
+          type: string
+          enum:
+            - add
+        value:
+          description: The value to add, replace or test.
+      required:
+        - op
+        - path
+        - value
+    JSONPatchRequestRemove:
+      type: object
+      additionalProperties: false
+      properties:
+        path:
+          description: A JSON Pointer path.
+          type: string
+        op:
+          description: The operation to perform.
+          type: string
+          enum:
+            - remove
+      required:
+        - op
+        - path
+    PatchRequest:
+      type: array
+      items:
+        oneOf:
+          - $ref: '#/components/schemas/JSONPatchRequestAdd'
+          - $ref: '#/components/schemas/JSONPatchRequestRemove'
+    ObjectPermissions:
+      type: string
+      enum:
+        - READ
+        - UPDATE
+        - DELETE
+        - ADMINISTER
+    SystemPermissions:
+      type: string
+      enum:
+        - CREATE_USER
+        - CREATE_USER_GROUP
+        - CREATE_CONNECTION
+        - CREATE_SHARING_PROFILE
+        - ADMINISTER
+    Permissions:
+      type: object
+      properties:
+        connectionPermissions:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/ObjectPermissions'
+        connectionGroupPermissions:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/ObjectPermissions'
+        sharingProfilePermissions:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/ObjectPermissions'
+        activeConnectionPermissions:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/ObjectPermissions'
+        userPermissions:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/ObjectPermissions'
+        userGroupPermissions:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/ObjectPermissions'
+        systemPermissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/SystemPermissions'
+      required:
+        - connectionPermissions
+        - connectionGroupPermissions
+        - sharingProfilePermissions
+        - activeConnectionPermissions
+        - userPermissions
+        - userGroupPermissions
+        - systemPermissions
+    UserGroup:
+      type: object
+      properties:
+        identifier:
+          type: string
+        attributes:
+          type: object
+          properties:
+            disabled:
+              type: string
+              format: bool
+              nullable: true
+      required:
+        - identifier
+      example:
+        identifier: group
+        attributes:
+          disabled: null
+    UserGroups:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/UserGroup'
+      example:
+        group1:
+          identifier: group1
+          attributes:
+            disabled: null
+        group2:
+          identifier: group2
+          attributes:
+            disabled: true
+    ActiveConnection:
+      type: object
+      properties:
+        identifier:
+          type: string
+        connectionIdentifier:
+          type: string
+          nullable: true
+        startDate:
+          type: string
+          format: unix-time
+          nullable: true
+        remoteHost:
+          type: string
+          format: hostname
+          nullable: true
+        username:
+          type: string
+          nullable: true
+        connectable:
+          type: boolean
+      required:
+        - identifier
+      example:
+        bb6ba5a1-74e7-4417-9cb8-99527cc43e34:
+          identifier: bb6ba5a1-74e7-4417-9cb8-99527cc43e34
+          connectionIdentifier: 1
+          startDate: 1677929341214
+          remoteHost: 100.64.2.1
+          username: guacadmin
+          connectable: true
+    ActiveConnections:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/ActiveConnection'
+      example:
+        bb6ba5a1-74e7-4417-9cb8-99527cc43e34:
+          identifier: bb6ba5a1-74e7-4417-9cb8-99527cc43e34
+          connectionIdentifier: 1
+          startDate: 1677929341214
+          remoteHost: 100.64.2.1
+          username: guacadmin
+          connectable: true
+        bb1ba2a3-74e7-4417-9cb8-99527cc43e34:
+          identifier: bb1ba2a3-74e7-4417-9cb8-99527cc43e34
+          connectionIdentifier: 1
+          startDate: 1677929341214
+          remoteHost: 100.64.2.1
+          username: guacadmin2
+          connectable: true
+  responses:
+    '204':
+      description: No Content.
+    '400':
+      description: Bad Request.
+    '403':
+      description: Forbidden.
+    '404':
+      description: Not Found.
+  parameters:
+    data_source:
+      name: data_source
+      description: The selected data source.
+      in: path
+      schema:
+        type: string
+      required: true
+    username:
+      name: username
+      description: A username.
+      in: path
+      schema:
+        type: string
+      required: true
+    group:
+      name: group
+      description: A group name.
+      in: path
+      schema:
+        type: string
+      required: true
+security:
+  - apiKey: []

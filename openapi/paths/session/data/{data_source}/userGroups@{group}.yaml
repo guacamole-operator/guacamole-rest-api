@@ -1,0 +1,59 @@
+get:
+  tags:
+    - User
+  summary: Get user group.
+  description: Get user group.
+  operationId: getUserGroup
+  parameters:
+    - $ref: ../../../../components/parameters/data_source.yaml
+    - $ref: ../../../../components/parameters/group.yaml
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: ../../../../components/schemas/UserGroup.yaml
+    403:
+      $ref: ../../../../components/responses/403.yaml
+    404:
+      $ref: ../../../../components/responses/404.yaml
+
+put:
+  tags:
+    - User
+  summary: Update user group.
+  description: Update user group.
+  operationId: updateUserGroup
+  parameters:
+    - $ref: ../../../../components/parameters/data_source.yaml
+    - $ref: ../../../../components/parameters/group.yaml
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../../../components/schemas/UserGroup.yaml
+  responses:
+    204:
+      $ref: ../../../../components/responses/204.yaml
+    403:
+      $ref: ../../../../components/responses/403.yaml
+    404:
+      $ref: ../../../../components/responses/404.yaml
+
+delete:
+  tags:
+    - User
+  summary: Delete user group.
+  description: Delete user group.
+  operationId: deleteUserGroup
+  parameters:
+    - $ref: ../../../../components/parameters/data_source.yaml
+    - $ref: ../../../../components/parameters/group.yaml
+  responses:
+    204:
+      $ref: ../../../../components/responses/204.yaml
+    403:
+      $ref: ../../../../components/responses/403.yaml
+    404:
+      $ref: ../../../../components/responses/404.yaml

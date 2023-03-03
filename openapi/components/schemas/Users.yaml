@@ -1,0 +1,32 @@
+type: object
+additionalProperties:
+  $ref: ./User.yaml
+example:
+  johndoe:
+    username: johndoe
+    attributes:
+      guac-email-address: johndoe@example.com
+      guac-organizational-role: user
+      guac-full-name: John Doe
+      expired: null
+      timezone: Europe/Berlin
+      access-window-start: 01:19:00
+      guac-organization: Org
+      access-window-end: 02:20:00
+      disabled: true
+      valid-until: "2023-03-19"
+      valid-from: "2023-03-05"
+  johndoe2:
+    username: johndoe2
+    attributes:
+      guac-email-address: johndoe2@example.com
+      guac-organizational-role: user
+      guac-full-name: John Doe 2
+      expired: null
+      timezone: Europe/Berlin
+      access-window-start: 01:19:00
+      guac-organization: Org
+      access-window-end: 02:20:00
+      disabled: true
+      valid-until: "2023-03-19"
+      valid-from: "2023-03-05"

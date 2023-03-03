@@ -1,0 +1,17 @@
+type: object
+properties:
+  identifier:
+    type: string
+  attributes:
+    type: object
+    properties:
+      disabled:
+        type: string
+        format: bool
+        nullable: true
+required:
+  - identifier
+example:
+  identifier: group
+  attributes:
+    disabled: null

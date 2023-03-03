@@ -1,0 +1,44 @@
+get:
+  tags:
+    - User
+  summary: List users.
+  description: List all known users.
+  operationId: listUsers
+  parameters:
+    - $ref: ../../../../components/parameters/data_source.yaml
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: ../../../../components/schemas/Users.yaml
+    403:
+      $ref: ../../../../components/responses/403.yaml
+    404:
+      $ref: ../../../../components/responses/404.yaml
+
+post:
+  tags:
+    - User
+  summary: Create user.
+  description: Create a new user.
+  operationId: createUser
+  parameters:
+    - $ref: ../../../../components/parameters/data_source.yaml
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../../../components/schemas/User.yaml
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: ../../../../components/schemas/User.yaml
+    400:
+      $ref: ../../../../components/responses/400.yaml
+    403:
+      $ref: ../../../../components/responses/403.yaml

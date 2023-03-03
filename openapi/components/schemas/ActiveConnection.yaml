@@ -1,0 +1,30 @@
+type: object
+properties:
+  identifier:
+    type: string
+  connectionIdentifier:
+    type: string
+    nullable: true
+  startDate:
+    type: string
+    format: unix-time
+    nullable: true
+  remoteHost:
+    type: string
+    format: hostname
+    nullable: true
+  username:
+    type: string
+    nullable: true
+  connectable:
+    type: boolean
+required:
+  - identifier
+example:
+  bb6ba5a1-74e7-4417-9cb8-99527cc43e34:
+    identifier: bb6ba5a1-74e7-4417-9cb8-99527cc43e34
+    connectionIdentifier: 1
+    startDate: 1677929341214
+    remoteHost: 100.64.2.1
+    username: guacadmin
+    connectable: true

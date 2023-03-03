@@ -1,0 +1,54 @@
+openapi: 3.0.3
+info:
+  version: 1.5.0
+  title: Apache Guacamole REST API
+  description: Reverse-engineered documentation for the Apache Guacamole REST API.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+tags:
+  - name: Authentication
+    description: Authentication handling.
+  - name: User
+    description: User related operations.
+  - name: Connection
+    description: Conneciton related operations.
+servers:
+  - url: https://{tenant}/guacamole/api
+    variables:
+      tenant:
+        default: www
+        description: Your tenant ID.
+  - url: https://example.com/guacamole/api
+paths:
+  /tokens:
+    $ref: paths/tokens.yaml
+  /tokens/{token}:
+    $ref: paths/tokens@{token}.yaml
+
+  /session/data/{data_source}/users:
+    $ref: paths/session/data/{data_source}/users.yaml
+  /session/data/{data_source}/users/{username}:
+    $ref: paths/session/data/{data_source}/users@{username}.yaml
+  /session/data/{data_source}/users/{username}/userGroups:
+    $ref: paths/session/data/{data_source}/users@{username}@userGroups.yaml
+  /session/data/{data_source}/users/{username}/permissions:
+    $ref: paths/session/data/{data_source}/users@{username}@permissions.yaml
+
+  /session/data/{data_source}/userGroups:
+    $ref: paths/session/data/{data_source}/userGroups.yaml
+  /session/data/{data_source}/userGroups/{group}:
+    $ref: paths/session/data/{data_source}/userGroups@{group}.yaml
+  /session/data/{data_source}/userGroups/{group}/memberUsers:
+    $ref: paths/session/data/{data_source}/userGroups@{group}@memberUsers.yaml
+  /session/data/{data_source}/userGroups/{group}/memberUserGroups:
+    $ref: paths/session/data/{data_source}/userGroups@{group}@memberUserGroups.yaml
+
+  /session/data/{data_source}/activeConnections:
+    $ref: paths/session/data/{data_source}/activeConnections.yaml
+components:
+  securitySchemes:
+    apiKey:
+      $ref: components/securitySchemes/apiKey.yaml
+security:
+  - apiKey: []

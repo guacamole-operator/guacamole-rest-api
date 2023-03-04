@@ -1,0 +1,41 @@
+get:
+  tags:
+    - Connection
+  summary: List active connections.
+  description: List all active connections.
+  operationId: listActiveConnections
+  parameters:
+    - $ref: ../../../../components/parameters/data_source.yaml
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: ../../../../components/schemas/ActiveConnections.yaml
+    403:
+      $ref: ../../../../components/responses/403.yaml
+
+patch:
+  tags:
+    - Connection
+  summary: Remove active connection.
+  description: Remove active connection.
+  operationId: removeActiveConnection
+  parameters:
+    - $ref: ../../../../components/parameters/data_source.yaml
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../../../components/schemas/PatchRequest.yaml
+        example:
+          - op: remove
+            path: /{activeConnectionIdentifier}
+  responses:
+    204:
+      $ref: ../../../../components/responses/204.yaml
+    400:
+      $ref: ../../../../components/responses/400.yaml
+    403:
+      $ref: ../../../../components/responses/403.yaml

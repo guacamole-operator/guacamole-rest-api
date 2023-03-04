@@ -1,0 +1,59 @@
+get:
+  tags:
+    - User
+  summary: Get user.
+  description: Get user details.
+  operationId: getUser
+  parameters:
+    - $ref: ../../../../components/parameters/data_source.yaml
+    - $ref: ../../../../components/parameters/username.yaml
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: ../../../../components/schemas/User.yaml
+    403:
+      $ref: ../../../../components/responses/403.yaml
+    404:
+      $ref: ../../../../components/responses/404.yaml
+
+put:
+  tags:
+    - User
+  summary: Update user.
+  description: Update user details.
+  operationId: updateUser
+  parameters:
+    - $ref: ../../../../components/parameters/data_source.yaml
+    - $ref: ../../../../components/parameters/username.yaml
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../../../components/schemas/User.yaml
+  responses:
+    204:
+      $ref: ../../../../components/responses/204.yaml
+    403:
+      $ref: ../../../../components/responses/403.yaml
+    404:
+      $ref: ../../../../components/responses/404.yaml
+
+delete:
+  tags:
+    - User
+  summary: Delete user.
+  description: Delete user.
+  operationId: deleteUser
+  parameters:
+    - $ref: ../../../../components/parameters/data_source.yaml
+    - $ref: ../../../../components/parameters/username.yaml
+  responses:
+    204:
+      $ref: ../../../../components/responses/204.yaml
+    403:
+      $ref: ../../../../components/responses/403.yaml
+    404:
+      $ref: ../../../../components/responses/404.yaml

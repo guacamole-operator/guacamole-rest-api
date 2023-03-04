@@ -1,0 +1,44 @@
+get:
+  tags:
+    - User
+  summary: Get user's permissions.
+  description: Get user's permissions.
+  operationId: getPermissionsOfUser
+  parameters:
+    - $ref: ../../../../components/parameters/data_source.yaml
+    - $ref: ../../../../components/parameters/username.yaml
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: ../../../../components/schemas/Permissions.yaml
+    403:
+      $ref: ../../../../components/responses/403.yaml
+    404:
+      $ref: ../../../../components/responses/404.yaml
+
+patch:
+  tags:
+    - User
+  summary: Modify permissions of user.
+  description: Modify permissions of user.
+  operationId: modifyPermissionsOfUser
+  parameters:
+    - $ref: ../../../../components/parameters/data_source.yaml
+    - $ref: ../../../../components/parameters/username.yaml
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../../../components/schemas/PatchRequest.yaml
+  responses:
+    204:
+      $ref: ../../../../components/responses/204.yaml
+    400:
+      $ref: ../../../../components/responses/400.yaml
+    403:
+      $ref: ../../../../components/responses/403.yaml
+    404:
+      $ref: ../../../../components/responses/404.yaml

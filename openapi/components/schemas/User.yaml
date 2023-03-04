@@ -1,0 +1,64 @@
+type: object
+properties:
+  username:
+    type: string
+  lastActive:
+    type: string
+    format: unix-time
+  attributes:
+    type: object
+    properties:
+      guac-email-address:
+        type: string
+        format: email
+        nullable: true
+      guac-organizational-role:
+        type: string
+        nullable: true
+      guac-full-name:
+        type: string
+        nullable: true
+      expired:
+        type: string
+        format: bool
+        nullable: true
+      timezone:
+        type: string
+        nullable: true
+      access-window-start:
+        type: string
+        nullable: true
+      guac-organization:
+        type: string
+        nullable: true
+      access-window-end:
+        type: string
+        nullable: true
+      disabled:
+        type: string
+        format: bool
+        nullable: true
+      valid-until:
+        type: string
+        format: date
+        nullable: true
+      valid-from:
+        type: string
+        format: date
+        nullable: true
+required:
+  - username
+example:
+  username: johndoe
+  attributes:
+    guac-email-address: johndoe@example.com
+    guac-organizational-role: user
+    guac-full-name: John Doe
+    expired: null
+    timezone: Europe/Berlin
+    access-window-start: 01:19:00
+    guac-organization: Org
+    access-window-end: 02:20:00
+    disabled: true
+    valid-until: "2023-03-19"
+    valid-from: "2023-03-05"

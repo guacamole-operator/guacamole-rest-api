@@ -1,0 +1,12 @@
+type: object
+additionalProperties:
+  $ref: ./UserGroup.yaml
+example:
+  group1:
+    identifier: group1
+    attributes:
+      disabled: null
+  group2:
+    identifier: group2
+    attributes:
+      disabled: true

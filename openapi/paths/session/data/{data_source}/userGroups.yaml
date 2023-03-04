@@ -1,0 +1,39 @@
+get:
+  tags:
+    - User
+  summary: List user groups.
+  description: List all known user groups.
+  operationId: listUserGroups
+  parameters:
+    - $ref: ../../../../components/parameters/data_source.yaml
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: ../../../../components/schemas/UserGroups.yaml
+    403:
+      $ref: ../../../../components/responses/403.yaml
+    404:
+      $ref: ../../../../components/responses/404.yaml
+
+post:
+  tags:
+    - User
+  summary: Create user group.
+  description: Create a new user groups.
+  operationId: createUserGroup
+  parameters:
+    - $ref: ../../../../components/parameters/data_source.yaml
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: ../../../../components/schemas/UserGroup.yaml
+    400:
+      $ref: ../../../../components/responses/400.yaml
+    403:
+      $ref: ../../../../components/responses/403.yaml

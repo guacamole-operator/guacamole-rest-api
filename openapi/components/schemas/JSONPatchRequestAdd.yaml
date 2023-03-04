@@ -1,0 +1,17 @@
+type: object
+additionalProperties: false
+properties:
+  path:
+    description: A JSON Pointer path.
+    type: string
+  op:
+    description: The operation to perform.
+    type: string
+    enum:
+      - add
+  value:
+    description: The value to add, replace or test.
+required:
+  - op
+  - path
+  - value

@@ -1,0 +1,17 @@
+type: object
+properties:
+  authToken:
+    type: string
+  username:
+    type: string
+  dataSource:
+    type: string
+  availableDataSources:
+    type: array
+    items:
+      type: string
+required:
+  - authToken
+  - username
+  - dataSource
+  - availableDataSources

@@ -1,0 +1,18 @@
+delete:
+  tags:
+    - Authentication
+  summary: Delete token.
+  description: Delete authentication token.
+  operationId: deleteToken
+  security: []
+  parameters:
+    - name: token
+      in: path
+      schema:
+        type: string
+      required: true
+  responses:
+    204:
+      $ref: ../components/responses/204.yaml
+    404:
+      $ref: ../components/responses/404.yaml

@@ -1,0 +1,6 @@
+type: string
+enum:
+  - READ
+  - UPDATE
+  - DELETE
+  - ADMINISTER

@@ -1,0 +1,23 @@
+patch:
+  tags:
+    - User
+  summary: Modify groups of user.
+  description: Modify groups of user.
+  operationId: modifyGroupsOfUser
+  parameters:
+    - $ref: ../../../../components/parameters/data_source.yaml
+    - $ref: ../../../../components/parameters/username.yaml
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../../../components/schemas/PatchRequest.yaml
+  responses:
+    204:
+      $ref: ../../../../components/responses/204.yaml
+    400:
+      $ref: ../../../../components/responses/400.yaml
+    403:
+      $ref: ../../../../components/responses/403.yaml
+    404:
+      $ref: ../../../../components/responses/404.yaml

@@ -1,0 +1,14 @@
+type: object
+additionalProperties: false
+properties:
+  path:
+    description: A JSON Pointer path.
+    type: string
+  op:
+    description: The operation to perform.
+    type: string
+    enum:
+      - remove
+required:
+  - op
+  - path

@@ -1,0 +1,6 @@
+name: group
+description: A group name.
+in: path
+schema:
+  type: string
+required: true

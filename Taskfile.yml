@@ -1,0 +1,29 @@
+version: "3"
+
+env:
+  REDOC_CLI_IMAGE: docker.io/redocly/cli:v1.0.0-beta.123
+
+tasks:
+  api:lint:
+    desc: Lint OpenAPI definition.
+    cmds:
+      - |
+        podman --storage-opt ignore_chown_errors=true \
+          run \
+          --rm \
+          -v $(pwd):/spec \
+          --security-opt label=disable \
+          ${REDOC_CLI_IMAGE} lint ./openapi/openapi.yaml
+
+  api:bundle:
+    desc: Create OpenAPI definition bundle.
+    cmds:
+      - task: api:lint
+      - |
+        podman --storage-opt ignore_chown_errors=true \
+          run \
+          --rm \
+          -v $(pwd):/spec \
+          --security-opt label=disable \
+          ${REDOC_CLI_IMAGE} bundle ./openapi/openapi.yaml \
+          -o dist/1.5.x/openapi.yaml

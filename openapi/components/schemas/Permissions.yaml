@@ -1,0 +1,50 @@
+type: object
+properties:
+  connectionPermissions:
+    type: object
+    additionalProperties:
+      type: array
+      items:
+        $ref: ./ObjectPermissions.yaml
+  connectionGroupPermissions:
+    type: object
+    additionalProperties:
+      type: array
+      items:
+        $ref: ./ObjectPermissions.yaml
+  sharingProfilePermissions:
+    type: object
+    additionalProperties:
+      type: array
+      items:
+        $ref: ./ObjectPermissions.yaml
+  activeConnectionPermissions:
+    type: object
+    additionalProperties:
+      type: array
+      items:
+        $ref: ./ObjectPermissions.yaml
+  userPermissions:
+    type: object
+    additionalProperties:
+      type: array
+      items:
+        $ref: ./ObjectPermissions.yaml
+  userGroupPermissions:
+    type: object
+    additionalProperties:
+      type: array
+      items:
+        $ref: ./ObjectPermissions.yaml
+  systemPermissions:
+    type: array
+    items:
+      $ref: ./SystemPermissions.yaml
+required:
+  - connectionPermissions
+  - connectionGroupPermissions
+  - sharingProfilePermissions
+  - activeConnectionPermissions
+  - userPermissions
+  - userGroupPermissions
+  - systemPermissions

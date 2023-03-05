@@ -3,8 +3,7 @@ properties:
   username:
     type: string
   lastActive:
-    type: string
-    format: unix-time
+    type: integer
   attributes:
     type: object
     properties:
@@ -50,6 +49,7 @@ required:
   - username
 example:
   username: johndoe
+  lastActive: 1678015263577
   attributes:
     guac-email-address: johndoe@example.com
     guac-organizational-role: user

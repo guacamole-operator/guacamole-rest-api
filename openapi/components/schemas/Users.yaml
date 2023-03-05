@@ -4,6 +4,7 @@ additionalProperties:
 example:
   johndoe:
     username: johndoe
+    lastActive: 1678015263577
     attributes:
       guac-email-address: johndoe@example.com
       guac-organizational-role: user
@@ -18,6 +19,7 @@ example:
       valid-from: "2023-03-05"
   johndoe2:
     username: johndoe2
+    lastActive: 1678015263577
     attributes:
       guac-email-address: johndoe2@example.com
       guac-organizational-role: user

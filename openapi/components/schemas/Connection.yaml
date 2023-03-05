@@ -1,0 +1,32 @@
+type: object
+properties:
+  activeConnections:
+    type: integer
+  attributes:
+    $ref: ConnectionAttributes.yaml
+  identifier:
+    type: string
+  lastActive:
+    type: integer
+    nullable: true
+  name:
+    type: string
+  parentIdentifier:
+    type: string
+  protocol:
+    $ref: ConnectionProtocol.yaml
+example:
+  activeConnections: 1
+  attributes:
+    failover-only: "true"
+    guacd-encryption: ssl
+    guacd-hostname: "1.2.3"
+    guacd-port: "123"
+    max-connections: "10"
+    max-connections-per-user: "10"
+    weight: "10"
+  identifier: "1"
+  lastActive: 1677972283000
+  name: "Fedora-36 (user: admin)"
+  parentIdentifier: ROOT
+  protocol: vnc

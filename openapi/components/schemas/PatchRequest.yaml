@@ -2,5 +2,5 @@
 type: array
 items:
   oneOf:
-    - $ref: ./JSONPatchRequestAdd.yaml
-    - $ref: ./JSONPatchRequestRemove.yaml
+    - $ref: JSONPatchRequestAdd.yaml
+    - $ref: JSONPatchRequestRemove.yaml

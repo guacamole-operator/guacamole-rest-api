@@ -1,9 +1,9 @@
 get:
   tags:
-    - User
-  summary: List users.
-  description: List all known users.
-  operationId: listUsers
+    - Connection
+  summary: List connections.
+  description: List all connections.
+  operationId: listConnections
   parameters:
     - $ref: ../../../../components/parameters/data_source.yaml
   responses:
@@ -12,30 +12,31 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../../../components/schemas/Users.yaml
+            $ref: ../../../../components/schemas/Connections.yaml
     403:
       $ref: ../../../../components/responses/403.yaml
 
 post:
   tags:
-    - User
-  summary: Create user.
-  description: Create a new user.
-  operationId: createUser
+    - Connection
+  summary: Create a connection.
+  description: Create a connection.
+  operationId: createConnection
   parameters:
     - $ref: ../../../../components/parameters/data_source.yaml
   requestBody:
     content:
       application/json:
         schema:
-          $ref: ../../../../components/schemas/User.yaml
+          $ref: ../../../../components/schemas/ConnectionRequest.yaml
+
   responses:
     200:
       description: OK.
       content:
         application/json:
           schema:
-            $ref: ../../../../components/schemas/User.yaml
+            $ref: ../../../../components/schemas/Connection.yaml
     400:
       $ref: ../../../../components/responses/400.yaml
     403:

@@ -1,0 +1,263 @@
+type: object
+properties:
+  # Network
+  hostname:
+    type: string
+  port:
+    type: string
+  # Authentication
+  username:
+    type: string
+  password:
+    type: string
+    format: password
+  domain:
+    type: string
+  security:
+    type: string
+    enum:
+      - ""
+      - rdp
+      - tls
+      - nla
+      - vmconnect
+      - any
+  disable-auth:
+    type: string
+    format: bool
+  ignore-cert:
+    type: string
+    format: bool
+  # Gateway
+  gateway-hostname:
+    type: string
+  gateway-port:
+    type: string
+  gateway-username:
+    type: string
+  gateway-password:
+    type: string
+    format: password
+  gateway-domain:
+    type: string
+  # Basic parameters.
+  initial-program:
+    type: string
+  client-name:
+    type: string
+  server-layout:
+    type: string
+    enum:
+      - ""
+      - de-ch-qwertz
+      - de-de-qwertz
+      - en-us-qwerty
+      - es-es-qwerty
+      - en-gb-qwerty
+      - es-latam-qwerty
+      - failsafe
+      - fr-be-azerty
+      - fr-fr-azerty
+      - fr-ca-qwerty
+      - fr-ch-qwertz
+      - hu-hu-qwertz
+      - it-it-qwerty
+      - ja-jp-qwerty
+      - no-no-qwerty
+      - pl-pl-qwerty
+      - pt-br-qwerty
+      - sv-se-qwerty
+      - da-dk-qwerty
+      - tr-tr-qwerty
+  timezone:
+    type: string
+  enable-touch:
+    type: string
+    format: bool
+  console:
+    type: string
+    format: bool
+  # Display
+  width:
+    type: string
+  height:
+    type: string
+  dpi:
+    type: string
+  color-depth:
+    type: string
+    enum:
+      - ""
+      - "8"
+      - "16"
+      - "24"
+      - "32"
+  force-lossless:
+    type: string
+    format: bool
+  resize-method:
+    type: string
+    enum:
+      - ""
+      - reconnect
+      - display-update
+  read-only:
+    type: string
+    format: bool
+  # Clipboard
+  normalize-clipboard:
+    type: string
+    enum:
+      - ""
+      - preserve
+      - unix
+      - windows
+  disable-copy:
+    type: string
+    format: bool
+  disable-paste:
+    type: string
+    format: bool
+  # Device Redirection
+  console-audio:
+    type: string
+    format: bool
+  disable-audio:
+    type: string
+    format: bool
+  enable-audio-input:
+    type: string
+    format: bool
+  enable-printing:
+    type: string
+    format: bool
+  printer-name:
+    type: string
+  enable-drive:
+    type: string
+    format: bool
+  drive-name:
+    type: string
+  disable-download:
+    type: string
+    format: bool
+  disable-upload:
+    type: string
+    format: bool
+  drive-path:
+    type: string
+  create-drive-path:
+    type: string
+    format: bool
+  static-channels:
+    type: string
+  # Performance
+  enable-wallpaper:
+    type: string
+    format: bool
+  enable-theming:
+    type: string
+    format: bool
+  enable-font-smoothing:
+    type: string
+    format: bool
+  enable-full-window-drag:
+    type: string
+    format: bool
+  enable-desktop-composition:
+    type: string
+    format: bool
+  enable-menu-animations:
+    type: string
+    format: bool
+  disable-bitmap-caching:
+    type: string
+    format: bool
+  disable-offscreen-caching:
+    type: string
+    format: bool
+  disable-glyph-caching:
+    type: string
+    format: bool
+  disable-gfx:
+    type: string
+    format: bool
+  # Remote App
+  remote-app:
+    type: string
+  remote-app-dir:
+    type: string
+  remote-app-args:
+    type: string
+  # Pre-Connection PDU
+  preconnection-id:
+    type: string
+  preconnection-blob:
+    type: string
+  # Load-Balancing
+  load-balance-info:
+    type: string
+  # Recording
+  recording-path:
+    type: string
+  recording-name:
+    type: string
+  recording-exclude-output:
+    type: string
+    format: bool
+  recording-exclude-mouse:
+    type: string
+    format: bool
+  recording-include-keys:
+    type: string
+    format: bool
+  create-recording-path:
+    type: string
+    format: bool
+  # SFTP
+  enable-sftp:
+    type: string
+  sftp-hostname:
+    type: string
+  sftp-port:
+    type: string
+  sftp-host-key:
+    type: string
+  sftp-username:
+    type: string
+  sftp-password:
+    type: string
+  sftp-private-key:
+    type: string
+  sftp-passphrase:
+    type: string
+  sftp-root-directory:
+    type: string
+  sftp-directory:
+    type: string
+  sftp-server-alive-interval:
+    type: string
+  sftp-disable-download:
+    type: string
+    format: bool
+  sftp-disable-upload:
+    type: string
+    format: bool
+  # Audio
+  enable-audio:
+    type: string
+    format: bool
+  audio-servername:
+    type: string
+  # WOL
+  wol-send-packet:
+    type: string
+    format: bool
+  wol-mac-addr:
+    type: string
+  wol-broadcast-addr:
+    type: string
+  wol-udp-port:
+    type: string
+  wol-wait-time:
+    type: string

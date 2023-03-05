@@ -11,8 +11,10 @@ tags:
     description: Authentication handling.
   - name: User
     description: User related operations.
+  - name: UserGroup
+    description: User group related operations.
   - name: Connection
-    description: Conneciton related operations.
+    description: Connection related operations.
 servers:
   - url: https://{tenant}/guacamole/api
     variables:
@@ -46,6 +48,13 @@ paths:
 
   /session/data/{data_source}/activeConnections:
     $ref: paths/session/data/{data_source}/activeConnections.yaml
+
+  /session/data/{data_source}/connections:
+    $ref: paths/session/data/{data_source}/connections.yaml
+  /session/data/{data_source}/connections@{connection}:
+    $ref: paths/session/data/{data_source}/connections@{connection}.yaml
+  /session/data/{data_source}/connections@{connection}/parameters:
+    $ref: paths/session/data/{data_source}/connections@{connection}@parameters.yaml
 components:
   securitySchemes:
     apiKey:

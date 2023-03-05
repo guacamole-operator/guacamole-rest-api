@@ -1,19 +1,19 @@
 get:
   tags:
-    - UserGroup
-  summary: Get user group.
-  description: Get user group.
-  operationId: getUserGroup
+    - Connection
+  summary: Get connection.
+  description: Get connection.
+  operationId: getConnection
   parameters:
     - $ref: ../../../../components/parameters/data_source.yaml
-    - $ref: ../../../../components/parameters/group.yaml
+    - $ref: ../../../../components/parameters/connection.yaml
   responses:
     200:
       description: OK.
       content:
         application/json:
           schema:
-            $ref: ../../../../components/schemas/UserGroup.yaml
+            $ref: ../../../../components/schemas/Connections.yaml
     403:
       $ref: ../../../../components/responses/403.yaml
     404:
@@ -21,18 +21,18 @@ get:
 
 put:
   tags:
-    - UserGroup
-  summary: Update user group.
-  description: Update user group.
-  operationId: updateUserGroup
+    - Connection
+  summary: Update connection.
+  description: Update connection settings.
+  operationId: updateConnection
   parameters:
     - $ref: ../../../../components/parameters/data_source.yaml
-    - $ref: ../../../../components/parameters/group.yaml
+    - $ref: ../../../../components/parameters/connection.yaml
   requestBody:
     content:
       application/json:
         schema:
-          $ref: ../../../../components/schemas/UserGroup.yaml
+          $ref: ../../../../components/schemas/ConnectionRequest.yaml
   responses:
     204:
       $ref: ../../../../components/responses/204.yaml
@@ -43,13 +43,13 @@ put:
 
 delete:
   tags:
-    - UserGroup
-  summary: Delete user group.
-  description: Delete user group.
-  operationId: deleteUserGroup
+    - Connection
+  summary: Delete connection.
+  description: Delete a connection.
+  operationId: deleteConnection
   parameters:
     - $ref: ../../../../components/parameters/data_source.yaml
-    - $ref: ../../../../components/parameters/group.yaml
+    - $ref: ../../../../components/parameters/connection.yaml
   responses:
     204:
       $ref: ../../../../components/responses/204.yaml

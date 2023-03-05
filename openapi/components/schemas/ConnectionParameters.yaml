@@ -1,0 +1,5 @@
+type: array
+items:
+  oneOf:
+    - $ref: ConnectionParametersVNC.yaml
+    - $ref: ConnectionParametersRDP.yaml

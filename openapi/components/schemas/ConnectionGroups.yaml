@@ -1,0 +1,24 @@
+type: object
+additionalProperties:
+  $ref: ConnectionGroup.yaml
+example:
+  1:
+    identifier: "1"
+    name: test
+    parentIdentifier: ROOT
+    type: ORGANIZATIONAL
+    activeConnections: 5
+    attributes:
+      enable-session-affinity: "true"
+      max-connections: null
+      max-connections-per-user: "5"
+  2:
+    identifier: "2"
+    name: test
+    parentIdentifier: ROOT
+    type: BALANCING
+    activeConnections: 5
+    attributes:
+      enable-session-affinity: ""
+      max-connections: null
+      max-connections-per-user: null

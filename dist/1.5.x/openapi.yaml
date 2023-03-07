@@ -15,6 +15,8 @@ tags:
     description: User group related operations.
   - name: Connection
     description: Connection related operations.
+  - name: ConnectionGroup
+    description: Connection group related operations.
 servers:
   - url: https://{tenant}/guacamole/api
     variables:
@@ -459,7 +461,7 @@ paths:
           $ref: '#/components/responses/400'
         '403':
           $ref: '#/components/responses/403'
-  /session/data/{data_source}/connections@{connection}:
+  /session/data/{data_source}/connections/{connection}:
     get:
       tags:
         - Connection
@@ -517,7 +519,7 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
-  /session/data/{data_source}/connections@{connection}/parameters:
+  /session/data/{data_source}/connections/{connection}/parameters:
     get:
       tags:
         - Connection
@@ -534,6 +536,127 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectionParameters'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  /session/data/{data_source}/connectionGroups:
+    get:
+      tags:
+        - ConnectionGroup
+      summary: List connection groups.
+      description: List all connection groups.
+      operationId: listConnectionGroups
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionGroups'
+        '403':
+          $ref: '#/components/responses/403'
+    post:
+      tags:
+        - ConnectionGroup
+      summary: Create a connection group.
+      description: Create a connection group.
+      operationId: createConnectionGroup
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionGroup'
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionGroup'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+  /session/data/{data_source}/connectionGroups/{connection_group}:
+    get:
+      tags:
+        - ConnectionGroup
+      summary: Get connection group.
+      description: Get a connection group.
+      operationId: getConnectionGroup
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+        - $ref: '#/components/parameters/connection_group'
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionGroup'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    put:
+      tags:
+        - ConnectionGroup
+      summary: Update connection group.
+      description: Update a connection group.
+      operationId: updateConnectionGroup
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+        - $ref: '#/components/parameters/connection_group'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionGroup'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    delete:
+      tags:
+        - ConnectionGroup
+      summary: Delete connection group.
+      description: Delete a connection group.
+      operationId: deleteConnectionGroup
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+        - $ref: '#/components/parameters/connection_group'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  /session/data/{data_source}/connectionGroups/{connection_group}/tree:
+    get:
+      tags:
+        - ConnectionGroup
+      summary: Get connection group tree.
+      description: Get a connection group tree.
+      operationId: getConnectionGroupTree
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+        - $ref: '#/components/parameters/connection_group'
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionGroupTree'
         '403':
           $ref: '#/components/responses/403'
         '404':
@@ -1347,6 +1470,155 @@ components:
         - name
         - parentIdentifier
         - protocol
+    ConnectionGroup:
+      type: object
+      properties:
+        identifier:
+          type: string
+          readOnly: true
+        name:
+          type: string
+        parentIdentifier:
+          type: string
+        type:
+          type: string
+          enum:
+            - ORGANIZATIONAL
+            - BALANCING
+        activeConnections:
+          type: integer
+          readOnly: true
+        attributes:
+          type: object
+          properties:
+            enable-session-affinity:
+              type: string
+              format: bool
+            max-connections:
+              type: string
+              nullable: true
+            max-connections-per-user:
+              type: string
+              nullable: true
+      required:
+        - identifier
+        - name
+        - type
+        - attributes
+      example:
+        identifier: '1'
+        name: test
+        parentIdentifier: ROOT
+        type: ORGANIZATIONAL
+        activeConnections: 5
+        attributes:
+          enable-session-affinity: 'true'
+          max-connections: null
+          max-connections-per-user: '5'
+    ConnectionGroups:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/ConnectionGroup'
+      example:
+        '1':
+          identifier: '1'
+          name: test
+          parentIdentifier: ROOT
+          type: ORGANIZATIONAL
+          activeConnections: 5
+          attributes:
+            enable-session-affinity: 'true'
+            max-connections: null
+            max-connections-per-user: '5'
+        '2':
+          identifier: '2'
+          name: test
+          parentIdentifier: ROOT
+          type: BALANCING
+          activeConnections: 5
+          attributes:
+            enable-session-affinity: ''
+            max-connections: null
+            max-connections-per-user: null
+    ConnectionGroupTree:
+      allOf:
+        - $ref: '#/components/schemas/ConnectionGroup'
+        - type: object
+          properties:
+            childConnectionGroups:
+              type: array
+              items:
+                $ref: '#/components/schemas/ConnectionGroup'
+            childConnections:
+              type: array
+              items:
+                $ref: '#/components/schemas/Connection'
+      example:
+        name: ROOT
+        identifier: ROOT
+        type: ORGANIZATIONAL
+        activeConnections: 0
+        childConnectionGroups:
+          - name: test
+            identifier: '1'
+            parentIdentifier: ROOT
+            type: ORGANIZATIONAL
+            activeConnections: 0
+            childConnectionGroups:
+              - name: nested
+                identifier: '2'
+                parentIdentifier: '1'
+                type: ORGANIZATIONAL
+                activeConnections: 0
+                attributes:
+                  max-connections: null
+                  max-connections-per-user: null
+                  enable-session-affinity: ''
+            attributes:
+              max-connections: null
+              max-connections-per-user: null
+              enable-session-affinity: ''
+        childConnections:
+          - name: test
+            identifier: '1'
+            parentIdentifier: ROOT
+            protocol: vnc
+            attributes:
+              guacd-encryption: none
+              failover-only: null
+              weight: null
+              max-connections: null
+              guacd-hostname: null
+              guacd-port: null
+              max-connections-per-user: null
+            activeConnections: 0
+          - name: test2
+            identifier: '2'
+            parentIdentifier: ROOT
+            protocol: vnc
+            attributes:
+              guacd-encryption: null
+              failover-only: null
+              weight: null
+              max-connections: null
+              guacd-hostname: null
+              guacd-port: null
+              max-connections-per-user: null
+            activeConnections: 0
+          - name: test3
+            identifier: '6'
+            parentIdentifier: ROOT
+            protocol: vnc
+            attributes:
+              guacd-encryption: null
+              failover-only: null
+              weight: null
+              max-connections: null
+              guacd-hostname: null
+              guacd-port: null
+              max-connections-per-user: null
+            activeConnections: 0
+        attributes: {}
   responses:
     '204':
       description: No Content.
@@ -1386,5 +1658,13 @@ components:
         type: string
       required: true
       x-go-name: ConnectionID
+    connection_group:
+      name: connection_group
+      description: The selected connection group.
+      in: path
+      schema:
+        type: string
+      required: true
+      x-go-name: ConnectionGroupID
 security:
   - apiKey: []

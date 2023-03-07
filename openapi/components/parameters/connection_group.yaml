@@ -1,0 +1,7 @@
+name: connection_group
+description: The selected connection group.
+in: path
+schema:
+  type: string
+required: true
+x-go-name: ConnectionGroupID

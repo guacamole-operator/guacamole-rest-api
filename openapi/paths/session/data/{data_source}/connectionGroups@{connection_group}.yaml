@@ -1,0 +1,59 @@
+get:
+  tags:
+    - ConnectionGroup
+  summary: Get connection group.
+  description: Get a connection group.
+  operationId: getConnectionGroup
+  parameters:
+    - $ref: ../../../../components/parameters/data_source.yaml
+    - $ref: ../../../../components/parameters/connection_group.yaml
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: ../../../../components/schemas/ConnectionGroup.yaml
+    403:
+      $ref: ../../../../components/responses/403.yaml
+    404:
+      $ref: ../../../../components/responses/404.yaml
+
+put:
+  tags:
+    - ConnectionGroup
+  summary: Update connection group.
+  description: Update a connection group.
+  operationId: updateConnectionGroup
+  parameters:
+    - $ref: ../../../../components/parameters/data_source.yaml
+    - $ref: ../../../../components/parameters/connection_group.yaml
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../../../components/schemas/ConnectionGroup.yaml
+  responses:
+    204:
+      $ref: ../../../../components/responses/204.yaml
+    403:
+      $ref: ../../../../components/responses/403.yaml
+    404:
+      $ref: ../../../../components/responses/404.yaml
+
+delete:
+  tags:
+    - ConnectionGroup
+  summary: Delete connection group.
+  description: Delete a connection group.
+  operationId: deleteConnectionGroup
+  parameters:
+    - $ref: ../../../../components/parameters/data_source.yaml
+    - $ref: ../../../../components/parameters/connection_group.yaml
+  responses:
+    204:
+      $ref: ../../../../components/responses/204.yaml
+    403:
+      $ref: ../../../../components/responses/403.yaml
+    404:
+      $ref: ../../../../components/responses/404.yaml

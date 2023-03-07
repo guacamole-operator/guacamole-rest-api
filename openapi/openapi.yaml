@@ -15,6 +15,8 @@ tags:
     description: User group related operations.
   - name: Connection
     description: Connection related operations.
+  - name: ConnectionGroup
+    description: Connection group related operations.
 servers:
   - url: https://{tenant}/guacamole/api
     variables:
@@ -51,10 +53,17 @@ paths:
 
   /session/data/{data_source}/connections:
     $ref: paths/session/data/{data_source}/connections.yaml
-  /session/data/{data_source}/connections@{connection}:
+  /session/data/{data_source}/connections/{connection}:
     $ref: paths/session/data/{data_source}/connections@{connection}.yaml
-  /session/data/{data_source}/connections@{connection}/parameters:
+  /session/data/{data_source}/connections/{connection}/parameters:
     $ref: paths/session/data/{data_source}/connections@{connection}@parameters.yaml
+
+  /session/data/{data_source}/connectionGroups:
+    $ref: paths/session/data/{data_source}/connectionGroups.yaml
+  /session/data/{data_source}/connectionGroups/{connection_group}:
+    $ref: paths/session/data/{data_source}/connectionGroups@{connection_group}.yaml
+  /session/data/{data_source}/connectionGroups/{connection_group}/tree:
+    $ref: paths/session/data/{data_source}/connectionGroups@{connection_group}@tree.yaml
 components:
   securitySchemes:
     apiKey:

@@ -8,7 +8,7 @@ The API definition is reverse-engineered from the original source code, the web 
 
 The following Guacamole versions with its corresponding REST APIs are supported:
 
-- 1.5.x
+- 1.5.x (WIP)
 
 <!-- References -->
 [guacamole]: https://guacamole.apache.org

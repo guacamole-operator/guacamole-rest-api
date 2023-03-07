@@ -1,6 +1,6 @@
 patch:
   tags:
-    - User
+    - UserGroup
   summary: Modify member groups of group.
   description: Modify member groups of group.
   operationId: modifyMemberGroupsOfGroup

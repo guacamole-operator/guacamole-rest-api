@@ -1,0 +1,27 @@
+type: object
+properties:
+  failover-only:
+    type: string
+    format: bool
+    nullable: true
+  guacd-encryption:
+    type: string
+    enum:
+      - none
+      - ssl
+    nullable: true
+  guacd-hostname:
+    type: string
+    nullable: true
+  guacd-port:
+    type: string
+    nullable: true
+  max-connections:
+    type: string
+    nullable: true
+  max-connections-per-user:
+    type: string
+    nullable: true
+  weight:
+    type: string
+    nullable: true

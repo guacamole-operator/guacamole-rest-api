@@ -1,6 +1,6 @@
 get:
   tags:
-    - User
+    - UserGroup
   summary: List user groups.
   description: List all known user groups.
   operationId: listUserGroups
@@ -15,12 +15,10 @@ get:
             $ref: ../../../../components/schemas/UserGroups.yaml
     403:
       $ref: ../../../../components/responses/403.yaml
-    404:
-      $ref: ../../../../components/responses/404.yaml
 
 post:
   tags:
-    - User
+    - UserGroup
   summary: Create user group.
   description: Create a new user groups.
   operationId: createUserGroup

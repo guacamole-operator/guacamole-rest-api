@@ -1,0 +1,20 @@
+get:
+  tags:
+    - Connection
+  summary: Get connection parameters.
+  description: Get parameters of a connection.
+  operationId: getConnectionParameters
+  parameters:
+    - $ref: ../../../../components/parameters/data_source.yaml
+    - $ref: ../../../../components/parameters/connection.yaml
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: ../../../../components/schemas/ConnectionParameters.yaml
+    403:
+      $ref: ../../../../components/responses/403.yaml
+    404:
+      $ref: ../../../../components/responses/404.yaml

@@ -1,0 +1,120 @@
+type: object
+properties:
+  # Network
+  hostname:
+    type: string
+  port:
+    type: string
+  # Authentication
+  username:
+    type: string
+  password:
+    type: string
+    format: password
+  # Display
+  read-only:
+    type: string
+    format: bool
+  swap-red-blue:
+    type: string
+    format: bool
+  cursor:
+    type: string
+    enum:
+      - ""
+      - local
+      - remote
+  color-depth:
+    type: string
+    enum:
+      - ""
+      - "8"
+      - "16"
+      - "24"
+      - "32"
+  force-lossless:
+    type: string
+    format: bool
+  # Clipboard
+  clipboard-encoding:
+    type: string
+    enum:
+      - ""
+      - UTF-8
+      - UTF-16
+      - CP1252
+  disable-copy:
+    type: string
+    format: bool
+  disable-paste:
+    type: string
+    format: bool
+  # Repeater
+  dest-host:
+    type: string
+  dest-port:
+    type: string
+  # Recording
+  recording-path:
+    type: string
+  recording-name:
+    type: string
+  recording-exclude-output:
+    type: string
+    format: bool
+  recording-exclude-mouse:
+    type: string
+    format: bool
+  recording-include-keys:
+    type: string
+    format: bool
+  create-recording-path:
+    type: string
+    format: bool
+  # SFTP
+  enable-sftp:
+    type: string
+  sftp-hostname:
+    type: string
+  sftp-port:
+    type: string
+  sftp-host-key:
+    type: string
+  sftp-username:
+    type: string
+  sftp-password:
+    type: string
+  sftp-private-key:
+    type: string
+  sftp-passphrase:
+    type: string
+  sftp-root-directory:
+    type: string
+  sftp-directory:
+    type: string
+  sftp-server-alive-interval:
+    type: string
+  sftp-disable-download:
+    type: string
+    format: bool
+  sftp-disable-upload:
+    type: string
+    format: bool
+  # Audio
+  enable-audio:
+    type: string
+    format: bool
+  audio-servername:
+    type: string
+  # WOL
+  wol-send-packet:
+    type: string
+    format: bool
+  wol-mac-addr:
+    type: string
+  wol-broadcast-addr:
+    type: string
+  wol-udp-port:
+    type: string
+  wol-wait-time:
+    type: string

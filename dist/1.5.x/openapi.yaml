@@ -11,8 +11,10 @@ tags:
     description: Authentication handling.
   - name: User
     description: User related operations.
+  - name: UserGroup
+    description: User group related operations.
   - name: Connection
-    description: Conneciton related operations.
+    description: Connection related operations.
 servers:
   - url: https://{tenant}/guacamole/api
     variables:
@@ -81,8 +83,6 @@ paths:
                 $ref: '#/components/schemas/Users'
         '403':
           $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
     post:
       tags:
         - User
@@ -236,7 +236,7 @@ paths:
   /session/data/{data_source}/userGroups:
     get:
       tags:
-        - User
+        - UserGroup
       summary: List user groups.
       description: List all known user groups.
       operationId: listUserGroups
@@ -251,11 +251,9 @@ paths:
                 $ref: '#/components/schemas/UserGroups'
         '403':
           $ref: '#/components/responses/403'
-        '404':
-          $ref: '#/components/responses/404'
     post:
       tags:
-        - User
+        - UserGroup
       summary: Create user group.
       description: Create a new user groups.
       operationId: createUserGroup
@@ -275,7 +273,7 @@ paths:
   /session/data/{data_source}/userGroups/{group}:
     get:
       tags:
-        - User
+        - UserGroup
       summary: Get user group.
       description: Get user group.
       operationId: getUserGroup
@@ -295,7 +293,7 @@ paths:
           $ref: '#/components/responses/404'
     put:
       tags:
-        - User
+        - UserGroup
       summary: Update user group.
       description: Update user group.
       operationId: updateUserGroup
@@ -316,7 +314,7 @@ paths:
           $ref: '#/components/responses/404'
     delete:
       tags:
-        - User
+        - UserGroup
       summary: Delete user group.
       description: Delete user group.
       operationId: deleteUserGroup
@@ -333,7 +331,7 @@ paths:
   /session/data/{data_source}/userGroups/{group}/memberUsers:
     patch:
       tags:
-        - User
+        - UserGroup
       summary: Modify members of group.
       description: Modify members of group.
       operationId: modifyMembersOfGroup
@@ -357,7 +355,7 @@ paths:
   /session/data/{data_source}/userGroups/{group}/memberUserGroups:
     patch:
       tags:
-        - User
+        - UserGroup
       summary: Modify member groups of group.
       description: Modify member groups of group.
       operationId: modifyMemberGroupsOfGroup
@@ -419,6 +417,127 @@ paths:
           $ref: '#/components/responses/400'
         '403':
           $ref: '#/components/responses/403'
+  /session/data/{data_source}/connections:
+    get:
+      tags:
+        - Connection
+      summary: List connections.
+      description: List all connections.
+      operationId: listConnections
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connections'
+        '403':
+          $ref: '#/components/responses/403'
+    post:
+      tags:
+        - Connection
+      summary: Create a connection.
+      description: Create a connection.
+      operationId: createConnection
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionRequest'
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connection'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+  /session/data/{data_source}/connections@{connection}:
+    get:
+      tags:
+        - Connection
+      summary: Get connection.
+      description: Get connection.
+      operationId: getConnection
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+        - $ref: '#/components/parameters/connection'
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Connections'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    put:
+      tags:
+        - Connection
+      summary: Update connection.
+      description: Update connection settings.
+      operationId: updateConnection
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+        - $ref: '#/components/parameters/connection'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectionRequest'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    delete:
+      tags:
+        - Connection
+      summary: Delete connection.
+      description: Delete a connection.
+      operationId: deleteConnection
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+        - $ref: '#/components/parameters/connection'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  /session/data/{data_source}/connections@{connection}/parameters:
+    get:
+      tags:
+        - Connection
+      summary: Get connection parameters.
+      description: Get parameters of a connection.
+      operationId: getConnectionParameters
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+        - $ref: '#/components/parameters/connection'
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionParameters'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
 components:
   securitySchemes:
     apiKey:
@@ -460,8 +579,7 @@ components:
         username:
           type: string
         lastActive:
-          type: string
-          format: unix-time
+          type: integer
         attributes:
           type: object
           properties:
@@ -507,6 +625,7 @@ components:
         - username
       example:
         username: johndoe
+        lastActive: 1678015263577
         attributes:
           guac-email-address: johndoe@example.com
           guac-organizational-role: user
@@ -526,6 +645,7 @@ components:
       example:
         johndoe:
           username: johndoe
+          lastActive: 1678015263577
           attributes:
             guac-email-address: johndoe@example.com
             guac-organizational-role: user
@@ -540,6 +660,7 @@ components:
             valid-from: '2023-03-05'
         johndoe2:
           username: johndoe2
+          lastActive: 1678015263577
           attributes:
             guac-email-address: johndoe2@example.com
             guac-organizational-role: user
@@ -738,6 +859,494 @@ components:
           remoteHost: 100.64.2.1
           username: guacadmin2
           connectable: true
+    ConnectionAttributes:
+      type: object
+      properties:
+        failover-only:
+          type: string
+          format: bool
+          nullable: true
+        guacd-encryption:
+          type: string
+          enum:
+            - none
+            - ssl
+          nullable: true
+        guacd-hostname:
+          type: string
+          nullable: true
+        guacd-port:
+          type: string
+          nullable: true
+        max-connections:
+          type: string
+          nullable: true
+        max-connections-per-user:
+          type: string
+          nullable: true
+        weight:
+          type: string
+          nullable: true
+    ConnectionProtocol:
+      type: string
+      enum:
+        - vnc
+        - rdp
+        - ssh
+        - telnet
+        - kubernetes
+    Connection:
+      type: object
+      properties:
+        activeConnections:
+          type: integer
+        attributes:
+          $ref: '#/components/schemas/ConnectionAttributes'
+        identifier:
+          type: string
+        lastActive:
+          type: integer
+          nullable: true
+        name:
+          type: string
+        parentIdentifier:
+          type: string
+        protocol:
+          $ref: '#/components/schemas/ConnectionProtocol'
+      example:
+        activeConnections: 1
+        attributes:
+          failover-only: 'true'
+          guacd-encryption: ssl
+          guacd-hostname: 1.2.3
+          guacd-port: '123'
+          max-connections: '10'
+          max-connections-per-user: '10'
+          weight: '10'
+        identifier: '1'
+        lastActive: 1677972283000
+        name: 'Fedora-36 (user: admin)'
+        parentIdentifier: ROOT
+        protocol: vnc
+    Connections:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/Connection'
+      example:
+        '1':
+          activeConnections: 1
+          attributes:
+            failover-only: 'true'
+            guacd-encryption: ssl
+            guacd-hostname: 1.2.3
+            guacd-port: '123'
+            max-connections: '10'
+            max-connections-per-user: '10'
+            weight: '10'
+          identifier: '1'
+          lastActive: 1677972283000,
+          name: 'Fedora-36 (user: admin)'
+          parentIdentifier: ROOT
+          protocol: vnc
+        '2':
+          activeConnections: 1
+          attributes:
+            failover-only: 'true'
+            guacd-encryption: ssl
+            guacd-hostname: 1.2.3
+            guacd-port: '123'
+            max-connections: '10'
+            max-connections-per-user: '10'
+            weight: '10'
+          identifier: '2'
+          lastActive: 1677972283000,
+          name: 'Fedora-36 (user: admin)'
+          parentIdentifier: ROOT
+          protocol: vnc
+    ConnectionParametersVNC:
+      type: object
+      properties:
+        hostname:
+          type: string
+        port:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+          format: password
+        read-only:
+          type: string
+          format: bool
+        swap-red-blue:
+          type: string
+          format: bool
+        cursor:
+          type: string
+          enum:
+            - ''
+            - local
+            - remote
+        color-depth:
+          type: string
+          enum:
+            - ''
+            - '8'
+            - '16'
+            - '24'
+            - '32'
+        force-lossless:
+          type: string
+          format: bool
+        clipboard-encoding:
+          type: string
+          enum:
+            - ''
+            - UTF-8
+            - UTF-16
+            - CP1252
+        disable-copy:
+          type: string
+          format: bool
+        disable-paste:
+          type: string
+          format: bool
+        dest-host:
+          type: string
+        dest-port:
+          type: string
+        recording-path:
+          type: string
+        recording-name:
+          type: string
+        recording-exclude-output:
+          type: string
+          format: bool
+        recording-exclude-mouse:
+          type: string
+          format: bool
+        recording-include-keys:
+          type: string
+          format: bool
+        create-recording-path:
+          type: string
+          format: bool
+        enable-sftp:
+          type: string
+        sftp-hostname:
+          type: string
+        sftp-port:
+          type: string
+        sftp-host-key:
+          type: string
+        sftp-username:
+          type: string
+        sftp-password:
+          type: string
+        sftp-private-key:
+          type: string
+        sftp-passphrase:
+          type: string
+        sftp-root-directory:
+          type: string
+        sftp-directory:
+          type: string
+        sftp-server-alive-interval:
+          type: string
+        sftp-disable-download:
+          type: string
+          format: bool
+        sftp-disable-upload:
+          type: string
+          format: bool
+        enable-audio:
+          type: string
+          format: bool
+        audio-servername:
+          type: string
+        wol-send-packet:
+          type: string
+          format: bool
+        wol-mac-addr:
+          type: string
+        wol-broadcast-addr:
+          type: string
+        wol-udp-port:
+          type: string
+        wol-wait-time:
+          type: string
+    ConnectionParametersRDP:
+      type: object
+      properties:
+        hostname:
+          type: string
+        port:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+          format: password
+        domain:
+          type: string
+        security:
+          type: string
+          enum:
+            - ''
+            - rdp
+            - tls
+            - nla
+            - vmconnect
+            - any
+        disable-auth:
+          type: string
+          format: bool
+        ignore-cert:
+          type: string
+          format: bool
+        gateway-hostname:
+          type: string
+        gateway-port:
+          type: string
+        gateway-username:
+          type: string
+        gateway-password:
+          type: string
+          format: password
+        gateway-domain:
+          type: string
+        initial-program:
+          type: string
+        client-name:
+          type: string
+        server-layout:
+          type: string
+          enum:
+            - ''
+            - de-ch-qwertz
+            - de-de-qwertz
+            - en-us-qwerty
+            - es-es-qwerty
+            - en-gb-qwerty
+            - es-latam-qwerty
+            - failsafe
+            - fr-be-azerty
+            - fr-fr-azerty
+            - fr-ca-qwerty
+            - fr-ch-qwertz
+            - hu-hu-qwertz
+            - it-it-qwerty
+            - ja-jp-qwerty
+            - no-no-qwerty
+            - pl-pl-qwerty
+            - pt-br-qwerty
+            - sv-se-qwerty
+            - da-dk-qwerty
+            - tr-tr-qwerty
+        timezone:
+          type: string
+        enable-touch:
+          type: string
+          format: bool
+        console:
+          type: string
+          format: bool
+        width:
+          type: string
+        height:
+          type: string
+        dpi:
+          type: string
+        color-depth:
+          type: string
+          enum:
+            - ''
+            - '8'
+            - '16'
+            - '24'
+            - '32'
+        force-lossless:
+          type: string
+          format: bool
+        resize-method:
+          type: string
+          enum:
+            - ''
+            - reconnect
+            - display-update
+        read-only:
+          type: string
+          format: bool
+        normalize-clipboard:
+          type: string
+          enum:
+            - ''
+            - preserve
+            - unix
+            - windows
+        disable-copy:
+          type: string
+          format: bool
+        disable-paste:
+          type: string
+          format: bool
+        console-audio:
+          type: string
+          format: bool
+        disable-audio:
+          type: string
+          format: bool
+        enable-audio-input:
+          type: string
+          format: bool
+        enable-printing:
+          type: string
+          format: bool
+        printer-name:
+          type: string
+        enable-drive:
+          type: string
+          format: bool
+        drive-name:
+          type: string
+        disable-download:
+          type: string
+          format: bool
+        disable-upload:
+          type: string
+          format: bool
+        drive-path:
+          type: string
+        create-drive-path:
+          type: string
+          format: bool
+        static-channels:
+          type: string
+        enable-wallpaper:
+          type: string
+          format: bool
+        enable-theming:
+          type: string
+          format: bool
+        enable-font-smoothing:
+          type: string
+          format: bool
+        enable-full-window-drag:
+          type: string
+          format: bool
+        enable-desktop-composition:
+          type: string
+          format: bool
+        enable-menu-animations:
+          type: string
+          format: bool
+        disable-bitmap-caching:
+          type: string
+          format: bool
+        disable-offscreen-caching:
+          type: string
+          format: bool
+        disable-glyph-caching:
+          type: string
+          format: bool
+        disable-gfx:
+          type: string
+          format: bool
+        remote-app:
+          type: string
+        remote-app-dir:
+          type: string
+        remote-app-args:
+          type: string
+        preconnection-id:
+          type: string
+        preconnection-blob:
+          type: string
+        load-balance-info:
+          type: string
+        recording-path:
+          type: string
+        recording-name:
+          type: string
+        recording-exclude-output:
+          type: string
+          format: bool
+        recording-exclude-mouse:
+          type: string
+          format: bool
+        recording-include-keys:
+          type: string
+          format: bool
+        create-recording-path:
+          type: string
+          format: bool
+        enable-sftp:
+          type: string
+        sftp-hostname:
+          type: string
+        sftp-port:
+          type: string
+        sftp-host-key:
+          type: string
+        sftp-username:
+          type: string
+        sftp-password:
+          type: string
+        sftp-private-key:
+          type: string
+        sftp-passphrase:
+          type: string
+        sftp-root-directory:
+          type: string
+        sftp-directory:
+          type: string
+        sftp-server-alive-interval:
+          type: string
+        sftp-disable-download:
+          type: string
+          format: bool
+        sftp-disable-upload:
+          type: string
+          format: bool
+        enable-audio:
+          type: string
+          format: bool
+        audio-servername:
+          type: string
+        wol-send-packet:
+          type: string
+          format: bool
+        wol-mac-addr:
+          type: string
+        wol-broadcast-addr:
+          type: string
+        wol-udp-port:
+          type: string
+        wol-wait-time:
+          type: string
+    ConnectionParameters:
+      type: array
+      items:
+        oneOf:
+          - $ref: '#/components/schemas/ConnectionParametersVNC'
+          - $ref: '#/components/schemas/ConnectionParametersRDP'
+    ConnectionRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        parentIdentifier:
+          type: string
+        protocol:
+          $ref: '#/components/schemas/ConnectionProtocol'
+        parameters:
+          $ref: '#/components/schemas/ConnectionParameters'
+        attributes:
+          $ref: '#/components/schemas/ConnectionAttributes'
+      required:
+        - name
+        - parentIdentifier
+        - protocol
   responses:
     '204':
       description: No Content.
@@ -769,5 +1378,13 @@ components:
       schema:
         type: string
       required: true
+    connection:
+      name: connection
+      description: The selected connection.
+      in: path
+      schema:
+        type: string
+      required: true
+      x-go-name: ConnectionID
 security:
   - apiKey: []

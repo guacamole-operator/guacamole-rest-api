@@ -1,0 +1,16 @@
+type: object
+properties:
+  name:
+    type: string
+  parentIdentifier:
+    type: string
+  protocol:
+    $ref: ConnectionProtocol.yaml
+  parameters:
+    $ref: ConnectionParameters.yaml
+  attributes:
+    $ref: ConnectionAttributes.yaml
+required:
+  - name
+  - parentIdentifier
+  - protocol

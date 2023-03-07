@@ -1,0 +1,7 @@
+name: connection
+description: The selected connection.
+in: path
+schema:
+  type: string
+required: true
+x-go-name: ConnectionID

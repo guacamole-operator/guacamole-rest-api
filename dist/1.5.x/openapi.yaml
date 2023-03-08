@@ -175,7 +175,7 @@ paths:
         - User
       summary: Modify groups of user.
       description: Modify groups of user.
-      operationId: modifyGroupsOfUser
+      operationId: modifyUserGroupsOfUser
       parameters:
         - $ref: '#/components/parameters/data_source'
         - $ref: '#/components/parameters/username'
@@ -199,7 +199,7 @@ paths:
         - Permission
       summary: Get permissions of user.
       description: Get permissions of a user.
-      operationId: getPermissionsOfUser
+      operationId: getUserPermissions
       parameters:
         - $ref: '#/components/parameters/data_source'
         - $ref: '#/components/parameters/username'
@@ -219,7 +219,7 @@ paths:
         - Permission
       summary: Modify permissions of user.
       description: Modify permissions of user.
-      operationId: modifyPermissionsOfUser
+      operationId: modifyUserPermissions
       parameters:
         - $ref: '#/components/parameters/data_source'
         - $ref: '#/components/parameters/username'
@@ -338,7 +338,7 @@ paths:
         - UserGroup
       summary: Modify members of group.
       description: Modify members of group.
-      operationId: modifyMembersOfGroup
+      operationId: modifyUserGroupMembers
       parameters:
         - $ref: '#/components/parameters/data_source'
         - $ref: '#/components/parameters/group'
@@ -362,7 +362,7 @@ paths:
         - UserGroup
       summary: Modify member groups of group.
       description: Modify member groups of group.
-      operationId: modifyMemberGroupsOfGroup
+      operationId: modifyUserGroupMemberGroups
       parameters:
         - $ref: '#/components/parameters/data_source'
         - $ref: '#/components/parameters/group'
@@ -386,7 +386,7 @@ paths:
         - Permission
       summary: Get group permissions.
       description: Get permissions of a group.
-      operationId: getPermissionsOfGroup
+      operationId: getUserGroupPermissions
       parameters:
         - $ref: '#/components/parameters/data_source'
         - $ref: '#/components/parameters/group'
@@ -445,9 +445,9 @@ paths:
     patch:
       tags:
         - Connection
-      summary: Remove active connection.
-      description: Remove active connection.
-      operationId: removeActiveConnection
+      summary: Delete active connection.
+      description: Delete an active connection.
+      operationId: deleteActiveConnection
       parameters:
         - $ref: '#/components/parameters/data_source'
       requestBody:
@@ -731,7 +731,7 @@ paths:
         - Permission
       summary: Get permissions of logged-in user.
       description: Get permissions of the logged-in user.
-      operationId: getPermissionsSelf
+      operationId: getSelfPermissions
       parameters:
         - $ref: '#/components/parameters/data_source'
       responses:

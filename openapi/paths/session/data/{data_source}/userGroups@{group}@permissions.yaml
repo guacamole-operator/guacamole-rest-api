@@ -3,7 +3,7 @@ get:
     - Permission
   summary: Get group permissions.
   description: Get permissions of a group.
-  operationId: getPermissionsOfGroup
+  operationId: getUserGroupPermissions
   parameters:
     - $ref: ../../../../components/parameters/data_source.yaml
     - $ref: ../../../../components/parameters/group.yaml

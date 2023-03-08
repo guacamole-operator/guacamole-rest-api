@@ -12,6 +12,7 @@ properties:
         nullable: true
 required:
   - identifier
+  - attributes
 example:
   identifier: group
   attributes:

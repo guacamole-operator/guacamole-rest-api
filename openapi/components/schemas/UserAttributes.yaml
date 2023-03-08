@@ -1,0 +1,42 @@
+type: object
+properties:
+  guac-full-name:
+    type: string
+    nullable: true
+  guac-email-address:
+    type: string
+    format: email
+    nullable: true
+  guac-organization:
+    type: string
+    nullable: true
+  guac-organizational-role:
+    type: string
+    nullable: true
+  disabled:
+    type: string
+    enum:
+      - "true"
+    nullable: true
+  expired:
+    type: string
+    enum:
+      - "true"
+    nullable: true
+  access-window-start:
+    type: string
+    nullable: true
+  access-window-end:
+    type: string
+    nullable: true
+  valid-until:
+    type: string
+    format: date
+    nullable: true
+  valid-from:
+    type: string
+    format: date
+    nullable: true
+  timezone:
+    type: string
+    nullable: true

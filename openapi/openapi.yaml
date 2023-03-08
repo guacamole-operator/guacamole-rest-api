@@ -68,6 +68,11 @@ paths:
     $ref: paths/session/data/{data_source}/connectionGroups@{connection_group}.yaml
   /session/data/{data_source}/connectionGroups/{connection_group}/tree:
     $ref: paths/session/data/{data_source}/connectionGroups@{connection_group}@tree.yaml
+
+  /session/data/{data_source}/self:
+    $ref: paths/session/data/{data_source}/self.yaml
+  /session/data/{data_source}/self/effectivePermissions:
+    $ref: paths/session/data/{data_source}/self@effectivePermissions.yaml
 components:
   securitySchemes:
     apiKey:

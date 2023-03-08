@@ -1,0 +1,17 @@
+get:
+  tags:
+    - User
+  summary: Get logged-in user.
+  description: Get details of logged-in user.
+  operationId: getSelf
+  parameters:
+    - $ref: ../../../../components/parameters/data_source.yaml
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: ../../../../components/schemas/User.yaml
+    403:
+      $ref: ../../../../components/responses/403.yaml

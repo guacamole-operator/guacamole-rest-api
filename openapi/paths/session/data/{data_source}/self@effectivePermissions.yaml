@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Permission
+  summary: Get permissions of logged-in user.
+  description: Get permissions of the logged-in user.
+  operationId: getPermissionsSelf
+  parameters:
+    - $ref: ../../../../components/parameters/data_source.yaml
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: ../../../../components/schemas/Permissions.yaml
+    403:
+      $ref: ../../../../components/responses/403.yaml

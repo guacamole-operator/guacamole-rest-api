@@ -17,6 +17,8 @@ tags:
     description: Connection related operations.
   - name: ConnectionGroup
     description: Connection group related operations.
+  - name: Permission
+    description: Permission related operations.
 servers:
   - url: https://{tenant}/guacamole/api
     variables:
@@ -194,9 +196,9 @@ paths:
   /session/data/{data_source}/users/{username}/permissions:
     get:
       tags:
-        - User
-      summary: Get user's permissions.
-      description: Get user's permissions.
+        - Permission
+      summary: Get permissions of user.
+      description: Get permissions of a user.
       operationId: getPermissionsOfUser
       parameters:
         - $ref: '#/components/parameters/data_source'
@@ -214,7 +216,7 @@ paths:
           $ref: '#/components/responses/404'
     patch:
       tags:
-        - User
+        - Permission
       summary: Modify permissions of user.
       description: Modify permissions of user.
       operationId: modifyPermissionsOfUser
@@ -361,6 +363,50 @@ paths:
       summary: Modify member groups of group.
       description: Modify member groups of group.
       operationId: modifyMemberGroupsOfGroup
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+        - $ref: '#/components/parameters/group'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchRequest'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '400':
+          $ref: '#/components/responses/400'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  /session/data/{data_source}/userGroups/{group}/permissions:
+    get:
+      tags:
+        - Permission
+      summary: Get group permissions.
+      description: Get permissions of a group.
+      operationId: getPermissionsOfGroup
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+        - $ref: '#/components/parameters/group'
+      responses:
+        '200':
+          description: OK.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Permissions'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    patch:
+      tags:
+        - Permission
+      summary: Modify group permissions.
+      description: Modify group permissions.
+      operationId: modifyUserGroupPermissions
       parameters:
         - $ref: '#/components/parameters/data_source'
         - $ref: '#/components/parameters/group'

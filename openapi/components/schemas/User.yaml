@@ -4,38 +4,38 @@ properties:
     type: string
   lastActive:
     type: integer
+    readOnly: true
   attributes:
     type: object
     properties:
+      guac-full-name:
+        type: string
+        nullable: true
       guac-email-address:
         type: string
         format: email
         nullable: true
-      guac-organizational-role:
-        type: string
-        nullable: true
-      guac-full-name:
-        type: string
-        nullable: true
-      expired:
-        type: string
-        format: bool
-        nullable: true
-      timezone:
-        type: string
-        nullable: true
-      access-window-start:
-        type: string
-        nullable: true
       guac-organization:
         type: string
         nullable: true
-      access-window-end:
+      guac-organizational-role:
         type: string
         nullable: true
       disabled:
         type: string
-        format: bool
+        enum:
+          - "true"
+        nullable: true
+      expired:
+        type: string
+        enum:
+          - "true"
+        nullable: true
+      access-window-start:
+        type: string
+        nullable: true
+      access-window-end:
+        type: string
         nullable: true
       valid-until:
         type: string
@@ -45,8 +45,13 @@ properties:
         type: string
         format: date
         nullable: true
+      timezone:
+        type: string
+        nullable: true
 required:
   - username
+  - lastActive
+  - attributes
 example:
   username: johndoe
   lastActive: 1678015263577

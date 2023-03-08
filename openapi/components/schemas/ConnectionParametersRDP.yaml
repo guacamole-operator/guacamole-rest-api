@@ -24,10 +24,12 @@ properties:
       - any
   disable-auth:
     type: string
-    format: bool
+    enum:
+      - "true"
   ignore-cert:
     type: string
-    format: bool
+    enum:
+      - "true"
   # Gateway
   gateway-hostname:
     type: string
@@ -73,10 +75,12 @@ properties:
     type: string
   enable-touch:
     type: string
-    format: bool
+    enum:
+      - "true"
   console:
     type: string
-    format: bool
+    enum:
+      - "true"
   # Display
   width:
     type: string
@@ -94,7 +98,8 @@ properties:
       - "32"
   force-lossless:
     type: string
-    format: bool
+    enum:
+      - "true"
   resize-method:
     type: string
     enum:
@@ -103,7 +108,8 @@ properties:
       - display-update
   read-only:
     type: string
-    format: bool
+    enum:
+      - "true"
   # Clipboard
   normalize-clipboard:
     type: string
@@ -114,74 +120,94 @@ properties:
       - windows
   disable-copy:
     type: string
-    format: bool
+    enum:
+      - "true"
   disable-paste:
     type: string
-    format: bool
+    enum:
+      - "true"
   # Device Redirection
   console-audio:
     type: string
-    format: bool
+    enum:
+      - "true"
   disable-audio:
     type: string
-    format: bool
+    enum:
+      - "true"
   enable-audio-input:
     type: string
-    format: bool
+    enum:
+      - "true"
   enable-printing:
     type: string
-    format: bool
+    enum:
+      - "true"
   printer-name:
     type: string
   enable-drive:
     type: string
-    format: bool
+    enum:
+      - "true"
   drive-name:
     type: string
   disable-download:
     type: string
-    format: bool
+    enum:
+      - "true"
   disable-upload:
     type: string
-    format: bool
+    enum:
+      - "true"
   drive-path:
     type: string
   create-drive-path:
     type: string
-    format: bool
+    enum:
+      - "true"
   static-channels:
     type: string
   # Performance
   enable-wallpaper:
     type: string
-    format: bool
+    enum:
+      - "true"
   enable-theming:
     type: string
-    format: bool
+    enum:
+      - "true"
   enable-font-smoothing:
     type: string
-    format: bool
+    enum:
+      - "true"
   enable-full-window-drag:
     type: string
-    format: bool
+    enum:
+      - "true"
   enable-desktop-composition:
     type: string
-    format: bool
+    enum:
+      - "true"
   enable-menu-animations:
     type: string
-    format: bool
+    enum:
+      - "true"
   disable-bitmap-caching:
     type: string
-    format: bool
+    enum:
+      - "true"
   disable-offscreen-caching:
     type: string
-    format: bool
+    enum:
+      - "true"
   disable-glyph-caching:
     type: string
-    format: bool
+    enum:
+      - "true"
   disable-gfx:
     type: string
-    format: bool
+    enum:
+      - "true"
   # Remote App
   remote-app:
     type: string
@@ -204,16 +230,20 @@ properties:
     type: string
   recording-exclude-output:
     type: string
-    format: bool
+    enum:
+      - "true"
   recording-exclude-mouse:
     type: string
-    format: bool
+    enum:
+      - "true"
   recording-include-keys:
     type: string
-    format: bool
+    enum:
+      - "true"
   create-recording-path:
     type: string
-    format: bool
+    enum:
+      - "true"
   # SFTP
   enable-sftp:
     type: string
@@ -239,20 +269,24 @@ properties:
     type: string
   sftp-disable-download:
     type: string
-    format: bool
+    enum:
+      - "true"
   sftp-disable-upload:
     type: string
-    format: bool
+    enum:
+      - "true"
   # Audio
   enable-audio:
     type: string
-    format: bool
+    enum:
+      - "true"
   audio-servername:
     type: string
   # WOL
   wol-send-packet:
     type: string
-    format: bool
+    enum:
+      - "true"
   wol-mac-addr:
     type: string
   wol-broadcast-addr:

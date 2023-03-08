@@ -20,7 +20,8 @@ properties:
     properties:
       enable-session-affinity:
         type: string
-        format: bool
+        enum:
+          - "true"
       max-connections:
         type: string
         nullable: true

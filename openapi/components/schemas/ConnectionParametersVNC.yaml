@@ -14,10 +14,12 @@ properties:
   # Display
   read-only:
     type: string
-    format: bool
+    enum:
+      - "true"
   swap-red-blue:
     type: string
-    format: bool
+    enum:
+      - "true"
   cursor:
     type: string
     enum:
@@ -34,7 +36,8 @@ properties:
       - "32"
   force-lossless:
     type: string
-    format: bool
+    enum:
+      - "true"
   # Clipboard
   clipboard-encoding:
     type: string
@@ -45,10 +48,12 @@ properties:
       - CP1252
   disable-copy:
     type: string
-    format: bool
+    enum:
+      - "true"
   disable-paste:
     type: string
-    format: bool
+    enum:
+      - "true"
   # Repeater
   dest-host:
     type: string
@@ -61,16 +66,20 @@ properties:
     type: string
   recording-exclude-output:
     type: string
-    format: bool
+    enum:
+      - "true"
   recording-exclude-mouse:
     type: string
-    format: bool
+    enum:
+      - "true"
   recording-include-keys:
     type: string
-    format: bool
+    enum:
+      - "true"
   create-recording-path:
     type: string
-    format: bool
+    enum:
+      - "true"
   # SFTP
   enable-sftp:
     type: string
@@ -96,20 +105,24 @@ properties:
     type: string
   sftp-disable-download:
     type: string
-    format: bool
+    enum:
+      - "true"
   sftp-disable-upload:
     type: string
-    format: bool
+    enum:
+      - "true"
   # Audio
   enable-audio:
     type: string
-    format: bool
+    enum:
+      - "true"
   audio-servername:
     type: string
   # WOL
   wol-send-packet:
     type: string
-    format: bool
+    enum:
+      - "true"
   wol-mac-addr:
     type: string
   wol-broadcast-addr:

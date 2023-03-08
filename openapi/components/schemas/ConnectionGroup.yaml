@@ -1,0 +1,44 @@
+type: object
+properties:
+  identifier:
+    type: string
+    readOnly: true
+  name:
+    type: string
+  parentIdentifier:
+    type: string
+  type:
+    type: string
+    enum:
+      - ORGANIZATIONAL
+      - BALANCING
+  activeConnections:
+    type: integer
+    readOnly: true
+  attributes:
+    type: object
+    properties:
+      enable-session-affinity:
+        type: string
+        format: bool
+      max-connections:
+        type: string
+        nullable: true
+      max-connections-per-user:
+        type: string
+        nullable: true
+required:
+  - identifier
+  - name
+  - type
+  - attributes
+example:
+  identifier: "1"
+  name: test
+  parentIdentifier: ROOT
+  type: ORGANIZATIONAL
+  activeConnections: 5
+  attributes:
+    enable-session-affinity: "true"
+    max-connections: null
+    max-connections-per-user: "5"

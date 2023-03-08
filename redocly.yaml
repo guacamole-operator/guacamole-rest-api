@@ -6,3 +6,5 @@ extends:
   - recommended
 rules:
   no-unused-components: error
+  no-invalid-media-type-examples:
+    severity: error

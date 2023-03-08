@@ -1,0 +1,78 @@
+allOf:
+  - $ref: ConnectionGroup.yaml
+  - type: object
+    properties:
+      childConnectionGroups:
+        type: array
+        items:
+          $ref: ConnectionGroup.yaml
+      childConnections:
+        type: array
+        items:
+          $ref: Connection.yaml
+example:
+  name: ROOT
+  identifier: ROOT
+  type: ORGANIZATIONAL
+  activeConnections: 0
+  childConnectionGroups:
+    - name: test
+      identifier: "1"
+      parentIdentifier: ROOT
+      type: ORGANIZATIONAL
+      activeConnections: 0
+      childConnectionGroups:
+        - name: nested
+          identifier: "2"
+          parentIdentifier: "1"
+          type: ORGANIZATIONAL
+          activeConnections: 0
+          attributes:
+            max-connections: null
+            max-connections-per-user: null
+            enable-session-affinity: ""
+      attributes:
+        max-connections: null
+        max-connections-per-user: null
+        enable-session-affinity: ""
+  childConnections:
+    - name: test
+      identifier: "1"
+      parentIdentifier: ROOT
+      protocol: vnc
+      attributes:
+        guacd-encryption: none
+        failover-only: null
+        weight: null
+        max-connections: null
+        guacd-hostname: null
+        guacd-port: null
+        max-connections-per-user: null
+      activeConnections: 0
+    - name: test2
+      identifier: "2"
+      parentIdentifier: ROOT
+      protocol: vnc
+      attributes:
+        guacd-encryption: null
+        failover-only: null
+        weight: null
+        max-connections: null
+        guacd-hostname: null
+        guacd-port: null
+        max-connections-per-user: null
+      activeConnections: 0
+    - name: test3
+      identifier: "6"
+      parentIdentifier: ROOT
+      protocol: vnc
+      attributes:
+        guacd-encryption: null
+        failover-only: null
+        weight: null
+        max-connections: null
+        guacd-hostname: null
+        guacd-port: null
+        max-connections-per-user: null
+      activeConnections: 0
+  attributes: {}

@@ -1,0 +1,20 @@
+get:
+  tags:
+    - ConnectionGroup
+  summary: Get connection group tree.
+  description: Get a connection group tree.
+  operationId: getConnectionGroupTree
+  parameters:
+    - $ref: ../../../../components/parameters/data_source.yaml
+    - $ref: ../../../../components/parameters/connection_group.yaml
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            $ref: ../../../../components/schemas/ConnectionGroupTree.yaml
+    403:
+      $ref: ../../../../components/responses/403.yaml
+    404:
+      $ref: ../../../../components/responses/404.yaml

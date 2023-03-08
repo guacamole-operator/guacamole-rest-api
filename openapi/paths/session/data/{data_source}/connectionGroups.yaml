@@ -1,9 +1,9 @@
 get:
   tags:
-    - Connection
-  summary: List connections.
-  description: List all connections.
-  operationId: listConnections
+    - ConnectionGroup
+  summary: List connection groups.
+  description: List all connection groups.
+  operationId: listConnectionGroups
   parameters:
     - $ref: ../../../../components/parameters/data_source.yaml
   responses:
@@ -12,30 +12,30 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../../../components/schemas/Connections.yaml
+            $ref: ../../../../components/schemas/ConnectionGroups.yaml
     403:
       $ref: ../../../../components/responses/403.yaml
 
 post:
   tags:
-    - Connection
-  summary: Create a connection.
-  description: Create a connection.
-  operationId: createConnection
+    - ConnectionGroup
+  summary: Create a connection group.
+  description: Create a connection group.
+  operationId: createConnectionGroup
   parameters:
     - $ref: ../../../../components/parameters/data_source.yaml
   requestBody:
     content:
       application/json:
         schema:
-          $ref: ../../../../components/schemas/ConnectionRequest.yaml
+          $ref: ../../../../components/schemas/ConnectionGroup.yaml
   responses:
     200:
       description: OK.
       content:
         application/json:
           schema:
-            $ref: ../../../../components/schemas/Connection.yaml
+            $ref: ../../../../components/schemas/ConnectionGroup.yaml
     400:
       $ref: ../../../../components/responses/400.yaml
     403:

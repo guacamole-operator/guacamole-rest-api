@@ -2,7 +2,8 @@ type: object
 properties:
   failover-only:
     type: string
-    format: bool
+    enum:
+      - "true"
     nullable: true
   guacd-encryption:
     type: string

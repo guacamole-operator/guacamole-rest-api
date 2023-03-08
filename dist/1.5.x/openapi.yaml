@@ -785,38 +785,38 @@ components:
           type: string
         lastActive:
           type: integer
+          readOnly: true
         attributes:
           type: object
           properties:
+            guac-full-name:
+              type: string
+              nullable: true
             guac-email-address:
               type: string
               format: email
               nullable: true
-            guac-organizational-role:
-              type: string
-              nullable: true
-            guac-full-name:
-              type: string
-              nullable: true
-            expired:
-              type: string
-              format: bool
-              nullable: true
-            timezone:
-              type: string
-              nullable: true
-            access-window-start:
-              type: string
-              nullable: true
             guac-organization:
               type: string
               nullable: true
-            access-window-end:
+            guac-organizational-role:
               type: string
               nullable: true
             disabled:
               type: string
-              format: bool
+              enum:
+                - 'true'
+              nullable: true
+            expired:
+              type: string
+              enum:
+                - 'true'
+              nullable: true
+            access-window-start:
+              type: string
+              nullable: true
+            access-window-end:
+              type: string
               nullable: true
             valid-until:
               type: string
@@ -826,8 +826,13 @@ components:
               type: string
               format: date
               nullable: true
+            timezone:
+              type: string
+              nullable: true
       required:
         - username
+        - lastActive
+        - attributes
       example:
         username: johndoe
         lastActive: 1678015263577
@@ -993,7 +998,8 @@ components:
           properties:
             disabled:
               type: string
-              format: bool
+              enum:
+                - 'true'
               nullable: true
       required:
         - identifier
@@ -1069,7 +1075,8 @@ components:
       properties:
         failover-only:
           type: string
-          format: bool
+          enum:
+            - 'true'
           nullable: true
         guacd-encryption:
           type: string
@@ -1182,10 +1189,12 @@ components:
           format: password
         read-only:
           type: string
-          format: bool
+          enum:
+            - 'true'
         swap-red-blue:
           type: string
-          format: bool
+          enum:
+            - 'true'
         cursor:
           type: string
           enum:
@@ -1202,7 +1211,8 @@ components:
             - '32'
         force-lossless:
           type: string
-          format: bool
+          enum:
+            - 'true'
         clipboard-encoding:
           type: string
           enum:
@@ -1212,10 +1222,12 @@ components:
             - CP1252
         disable-copy:
           type: string
-          format: bool
+          enum:
+            - 'true'
         disable-paste:
           type: string
-          format: bool
+          enum:
+            - 'true'
         dest-host:
           type: string
         dest-port:
@@ -1226,16 +1238,20 @@ components:
           type: string
         recording-exclude-output:
           type: string
-          format: bool
+          enum:
+            - 'true'
         recording-exclude-mouse:
           type: string
-          format: bool
+          enum:
+            - 'true'
         recording-include-keys:
           type: string
-          format: bool
+          enum:
+            - 'true'
         create-recording-path:
           type: string
-          format: bool
+          enum:
+            - 'true'
         enable-sftp:
           type: string
         sftp-hostname:
@@ -1260,18 +1276,22 @@ components:
           type: string
         sftp-disable-download:
           type: string
-          format: bool
+          enum:
+            - 'true'
         sftp-disable-upload:
           type: string
-          format: bool
+          enum:
+            - 'true'
         enable-audio:
           type: string
-          format: bool
+          enum:
+            - 'true'
         audio-servername:
           type: string
         wol-send-packet:
           type: string
-          format: bool
+          enum:
+            - 'true'
         wol-mac-addr:
           type: string
         wol-broadcast-addr:
@@ -1305,10 +1325,12 @@ components:
             - any
         disable-auth:
           type: string
-          format: bool
+          enum:
+            - 'true'
         ignore-cert:
           type: string
-          format: bool
+          enum:
+            - 'true'
         gateway-hostname:
           type: string
         gateway-port:
@@ -1352,10 +1374,12 @@ components:
           type: string
         enable-touch:
           type: string
-          format: bool
+          enum:
+            - 'true'
         console:
           type: string
-          format: bool
+          enum:
+            - 'true'
         width:
           type: string
         height:
@@ -1372,7 +1396,8 @@ components:
             - '32'
         force-lossless:
           type: string
-          format: bool
+          enum:
+            - 'true'
         resize-method:
           type: string
           enum:
@@ -1381,7 +1406,8 @@ components:
             - display-update
         read-only:
           type: string
-          format: bool
+          enum:
+            - 'true'
         normalize-clipboard:
           type: string
           enum:
@@ -1391,72 +1417,92 @@ components:
             - windows
         disable-copy:
           type: string
-          format: bool
+          enum:
+            - 'true'
         disable-paste:
           type: string
-          format: bool
+          enum:
+            - 'true'
         console-audio:
           type: string
-          format: bool
+          enum:
+            - 'true'
         disable-audio:
           type: string
-          format: bool
+          enum:
+            - 'true'
         enable-audio-input:
           type: string
-          format: bool
+          enum:
+            - 'true'
         enable-printing:
           type: string
-          format: bool
+          enum:
+            - 'true'
         printer-name:
           type: string
         enable-drive:
           type: string
-          format: bool
+          enum:
+            - 'true'
         drive-name:
           type: string
         disable-download:
           type: string
-          format: bool
+          enum:
+            - 'true'
         disable-upload:
           type: string
-          format: bool
+          enum:
+            - 'true'
         drive-path:
           type: string
         create-drive-path:
           type: string
-          format: bool
+          enum:
+            - 'true'
         static-channels:
           type: string
         enable-wallpaper:
           type: string
-          format: bool
+          enum:
+            - 'true'
         enable-theming:
           type: string
-          format: bool
+          enum:
+            - 'true'
         enable-font-smoothing:
           type: string
-          format: bool
+          enum:
+            - 'true'
         enable-full-window-drag:
           type: string
-          format: bool
+          enum:
+            - 'true'
         enable-desktop-composition:
           type: string
-          format: bool
+          enum:
+            - 'true'
         enable-menu-animations:
           type: string
-          format: bool
+          enum:
+            - 'true'
         disable-bitmap-caching:
           type: string
-          format: bool
+          enum:
+            - 'true'
         disable-offscreen-caching:
           type: string
-          format: bool
+          enum:
+            - 'true'
         disable-glyph-caching:
           type: string
-          format: bool
+          enum:
+            - 'true'
         disable-gfx:
           type: string
-          format: bool
+          enum:
+            - 'true'
         remote-app:
           type: string
         remote-app-dir:
@@ -1475,16 +1521,20 @@ components:
           type: string
         recording-exclude-output:
           type: string
-          format: bool
+          enum:
+            - 'true'
         recording-exclude-mouse:
           type: string
-          format: bool
+          enum:
+            - 'true'
         recording-include-keys:
           type: string
-          format: bool
+          enum:
+            - 'true'
         create-recording-path:
           type: string
-          format: bool
+          enum:
+            - 'true'
         enable-sftp:
           type: string
         sftp-hostname:
@@ -1509,18 +1559,22 @@ components:
           type: string
         sftp-disable-download:
           type: string
-          format: bool
+          enum:
+            - 'true'
         sftp-disable-upload:
           type: string
-          format: bool
+          enum:
+            - 'true'
         enable-audio:
           type: string
-          format: bool
+          enum:
+            - 'true'
         audio-servername:
           type: string
         wol-send-packet:
           type: string
-          format: bool
+          enum:
+            - 'true'
         wol-mac-addr:
           type: string
         wol-broadcast-addr:
@@ -1575,7 +1629,8 @@ components:
           properties:
             enable-session-affinity:
               type: string
-              format: bool
+              enum:
+                - 'true'
             max-connections:
               type: string
               nullable: true

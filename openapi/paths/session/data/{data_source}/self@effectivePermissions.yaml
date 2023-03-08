@@ -3,7 +3,7 @@ get:
     - Permission
   summary: Get permissions of logged-in user.
   description: Get permissions of the logged-in user.
-  operationId: getPermissionsSelf
+  operationId: getSelfPermissions
   parameters:
     - $ref: ../../../../components/parameters/data_source.yaml
   responses:

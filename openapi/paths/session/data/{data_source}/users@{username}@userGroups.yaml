@@ -3,7 +3,7 @@ patch:
     - User
   summary: Modify groups of user.
   description: Modify groups of user.
-  operationId: modifyGroupsOfUser
+  operationId: modifyUserGroupsOfUser
   parameters:
     - $ref: ../../../../components/parameters/data_source.yaml
     - $ref: ../../../../components/parameters/username.yaml

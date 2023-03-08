@@ -3,7 +3,7 @@ get:
     - Permission
   summary: Get permissions of user.
   description: Get permissions of a user.
-  operationId: getPermissionsOfUser
+  operationId: getUserPermissions
   parameters:
     - $ref: ../../../../components/parameters/data_source.yaml
     - $ref: ../../../../components/parameters/username.yaml
@@ -24,7 +24,7 @@ patch:
     - Permission
   summary: Modify permissions of user.
   description: Modify permissions of user.
-  operationId: modifyPermissionsOfUser
+  operationId: modifyUserPermissions
   parameters:
     - $ref: ../../../../components/parameters/data_source.yaml
     - $ref: ../../../../components/parameters/username.yaml

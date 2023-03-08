@@ -19,9 +19,9 @@ get:
 patch:
   tags:
     - Connection
-  summary: Remove active connection.
-  description: Remove active connection.
-  operationId: removeActiveConnection
+  summary: Delete active connection.
+  description: Delete an active connection.
+  operationId: deleteActiveConnection
   parameters:
     - $ref: ../../../../components/parameters/data_source.yaml
   requestBody:

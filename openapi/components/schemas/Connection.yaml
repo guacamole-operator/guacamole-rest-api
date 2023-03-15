@@ -1,20 +1,27 @@
 type: object
 properties:
-  activeConnections:
-    type: integer
-  attributes:
-    $ref: ConnectionAttributes.yaml
   identifier:
     type: string
-  lastActive:
-    type: integer
-    nullable: true
   name:
     type: string
   parentIdentifier:
     type: string
   protocol:
     $ref: ConnectionProtocol.yaml
+  lastActive:
+    type: integer
+    nullable: true
+  activeConnections:
+    type: integer
+  attributes:
+    $ref: ConnectionAttributes.yaml
+required:
+  - identifier
+  - parentIdentifier
+  - name
+  - protocol
+  - activeConnections
+  - attributes
 example:
   activeConnections: 1
   attributes:

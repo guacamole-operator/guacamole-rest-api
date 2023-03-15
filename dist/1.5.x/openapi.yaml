@@ -778,6 +778,49 @@ components:
         - username
         - dataSource
         - availableDataSources
+    UserAttributes:
+      type: object
+      properties:
+        guac-full-name:
+          type: string
+          nullable: true
+        guac-email-address:
+          type: string
+          format: email
+          nullable: true
+        guac-organization:
+          type: string
+          nullable: true
+        guac-organizational-role:
+          type: string
+          nullable: true
+        disabled:
+          type: string
+          enum:
+            - 'true'
+          nullable: true
+        expired:
+          type: string
+          enum:
+            - 'true'
+          nullable: true
+        access-window-start:
+          type: string
+          nullable: true
+        access-window-end:
+          type: string
+          nullable: true
+        valid-until:
+          type: string
+          format: date
+          nullable: true
+        valid-from:
+          type: string
+          format: date
+          nullable: true
+        timezone:
+          type: string
+          nullable: true
     User:
       type: object
       properties:
@@ -787,48 +830,7 @@ components:
           type: integer
           readOnly: true
         attributes:
-          type: object
-          properties:
-            guac-full-name:
-              type: string
-              nullable: true
-            guac-email-address:
-              type: string
-              format: email
-              nullable: true
-            guac-organization:
-              type: string
-              nullable: true
-            guac-organizational-role:
-              type: string
-              nullable: true
-            disabled:
-              type: string
-              enum:
-                - 'true'
-              nullable: true
-            expired:
-              type: string
-              enum:
-                - 'true'
-              nullable: true
-            access-window-start:
-              type: string
-              nullable: true
-            access-window-end:
-              type: string
-              nullable: true
-            valid-until:
-              type: string
-              format: date
-              nullable: true
-            valid-from:
-              type: string
-              format: date
-              nullable: true
-            timezone:
-              type: string
-              nullable: true
+          $ref: '#/components/schemas/UserAttributes'
       required:
         - username
         - lastActive
@@ -1003,6 +1005,7 @@ components:
               nullable: true
       required:
         - identifier
+        - attributes
       example:
         identifier: group
         attributes:
@@ -1070,6 +1073,14 @@ components:
           remoteHost: 100.64.2.1
           username: guacadmin2
           connectable: true
+    ConnectionProtocol:
+      type: string
+      enum:
+        - vnc
+        - rdp
+        - ssh
+        - telnet
+        - kubernetes
     ConnectionAttributes:
       type: object
       properties:
@@ -1099,32 +1110,31 @@ components:
         weight:
           type: string
           nullable: true
-    ConnectionProtocol:
-      type: string
-      enum:
-        - vnc
-        - rdp
-        - ssh
-        - telnet
-        - kubernetes
     Connection:
       type: object
       properties:
-        activeConnections:
-          type: integer
-        attributes:
-          $ref: '#/components/schemas/ConnectionAttributes'
         identifier:
           type: string
-        lastActive:
-          type: integer
-          nullable: true
         name:
           type: string
         parentIdentifier:
           type: string
         protocol:
           $ref: '#/components/schemas/ConnectionProtocol'
+        lastActive:
+          type: integer
+          nullable: true
+        activeConnections:
+          type: integer
+        attributes:
+          $ref: '#/components/schemas/ConnectionAttributes'
+      required:
+        - identifier
+        - parentIdentifier
+        - name
+        - protocol
+        - activeConnections
+        - attributes
       example:
         activeConnections: 1
         attributes:
@@ -1606,6 +1616,8 @@ components:
         - name
         - parentIdentifier
         - protocol
+        - parameters
+        - attributes
     ConnectionGroup:
       type: object
       properties:

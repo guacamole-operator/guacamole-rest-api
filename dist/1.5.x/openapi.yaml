@@ -31,9 +31,9 @@ paths:
     post:
       tags:
         - Authentication
-      summary: Generate token.
-      description: Generate a new authentication token.
-      operationId: generateToken
+      summary: Create or validate token.
+      description: Create a new authentication token or validate an existing one.
+      operationId: createOrValidateToken
       security: []
       requestBody:
         required: true
@@ -750,16 +750,29 @@ components:
       in: header
       name: Guacamole-Token
   schemas:
-    TokenRequest:
+    TokenCreateRequest:
       type: object
       properties:
         username:
           type: string
         password:
           type: string
+          format: password
       required:
         - username
         - password
+    TokenValidateRequest:
+      type: object
+      properties:
+        token:
+          type: string
+          format: password
+      required:
+        - token
+    TokenRequest:
+      oneOf:
+        - $ref: '#/components/schemas/TokenCreateRequest'
+        - $ref: '#/components/schemas/TokenValidateRequest'
     Token:
       type: object
       properties:

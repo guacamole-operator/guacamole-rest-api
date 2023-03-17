@@ -1,9 +1,9 @@
 post:
   tags:
     - Authentication
-  summary: Generate token.
-  description: Generate a new authentication token.
-  operationId: generateToken
+  summary: Create or validate token.
+  description: Create a new authentication token or validate an existing one.
+  operationId: createOrValidateToken
   security: []
   requestBody:
     required: true

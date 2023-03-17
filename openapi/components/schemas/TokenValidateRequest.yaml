@@ -3,5 +3,7 @@ properties:
   token:
     type: string
     format: password
+    x-oapi-codegen-extra-tags:
+      form: token
 required:
   - token

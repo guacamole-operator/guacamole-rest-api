@@ -1,3 +1,14 @@
-oneOf:
-  - $ref: TokenCreateRequest.yaml
-  - $ref: TokenValidateRequest.yaml
+type: object
+properties:
+  username:
+    type: string
+  password:
+    type: string
+    format: password
+  token:
+    type: string
+    format: password
+required:
+  - username
+  - password
+  - token

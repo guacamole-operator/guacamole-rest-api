@@ -2,9 +2,13 @@ type: object
 properties:
   username:
     type: string
+    x-oapi-codegen-extra-tags:
+      form: username
   password:
     type: string
     format: password
+    x-oapi-codegen-extra-tags:
+      form: password
 required:
   - username
   - password

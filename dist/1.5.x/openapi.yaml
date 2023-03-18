@@ -169,6 +169,28 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
+  /session/data/{data_source}/users/{username}/password:
+    put:
+      tags:
+        - User
+      summary: Update user password.
+      description: Update user password.
+      operationId: updateUserPassword
+      parameters:
+        - $ref: '#/components/parameters/data_source'
+        - $ref: '#/components/parameters/username'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserPassword'
+      responses:
+        '204':
+          $ref: '#/components/responses/204'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
   /session/data/{data_source}/users/{username}/userGroups:
     patch:
       tags:
@@ -890,6 +912,20 @@ components:
             disabled: true
             valid-until: '2023-03-19'
             valid-from: '2023-03-05'
+    UserPassword:
+      type: object
+      properties:
+        newPassword:
+          type: string
+          format: password
+          writeOnly: true
+        oldPassword:
+          type: string
+          format: password
+          writeOnly: true
+      required:
+        - newPassword
+        - oldPassword
     JSONPatchRequestAdd:
       type: object
       additionalProperties: false

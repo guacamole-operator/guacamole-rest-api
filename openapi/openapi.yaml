@@ -36,6 +36,8 @@ paths:
     $ref: paths/session/data/{data_source}/users.yaml
   /session/data/{data_source}/users/{username}:
     $ref: paths/session/data/{data_source}/users@{username}.yaml
+  /session/data/{data_source}/users/{username}/password:
+    $ref: paths/session/data/{data_source}/users@{username}@password.yaml
   /session/data/{data_source}/users/{username}/userGroups:
     $ref: paths/session/data/{data_source}/users@{username}@userGroups.yaml
   /session/data/{data_source}/users/{username}/permissions:

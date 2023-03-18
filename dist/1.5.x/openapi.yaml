@@ -1635,11 +1635,9 @@ components:
         wol-wait-time:
           type: string
     ConnectionParameters:
-      type: array
-      items:
-        oneOf:
-          - $ref: '#/components/schemas/ConnectionParametersVNC'
-          - $ref: '#/components/schemas/ConnectionParametersRDP'
+      oneOf:
+        - $ref: '#/components/schemas/ConnectionParametersVNC'
+        - $ref: '#/components/schemas/ConnectionParametersRDP'
     ConnectionRequest:
       type: object
       properties:

@@ -1696,6 +1696,7 @@ components:
       required:
         - identifier
         - name
+        - parentIdentifier
         - type
         - attributes
       example:

@@ -1672,6 +1672,11 @@ components:
           enum:
             - ORGANIZATIONAL
             - BALANCING
+        childConnectionGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConnectionGroup'
+          readOnly: true
         activeConnections:
           type: integer
           readOnly: true

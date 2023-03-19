@@ -12,6 +12,11 @@ properties:
     enum:
       - ORGANIZATIONAL
       - BALANCING
+  childConnectionGroups:
+    type: array
+    items:
+      $ref: ConnectionGroup.yaml
+    readOnly: true
   activeConnections:
     type: integer
     readOnly: true

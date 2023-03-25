@@ -545,7 +545,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Connections'
+                $ref: '#/components/schemas/Connection'
         '403':
           $ref: '#/components/responses/403'
         '404':

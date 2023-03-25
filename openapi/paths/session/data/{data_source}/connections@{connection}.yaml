@@ -13,7 +13,7 @@ get:
       content:
         application/json:
           schema:
-            $ref: ../../../../components/schemas/Connections.yaml
+            $ref: ../../../../components/schemas/Connection.yaml
     403:
       $ref: ../../../../components/responses/403.yaml
     404:

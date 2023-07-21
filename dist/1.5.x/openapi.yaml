@@ -930,14 +930,14 @@ components:
       type: object
       additionalProperties: false
       properties:
-        path:
-          description: A JSON Pointer path.
-          type: string
         op:
           description: The operation to perform.
           type: string
           enum:
             - add
+        path:
+          description: A JSON Pointer path.
+          type: string
         value:
           description: The value to add, replace or test.
       required:
@@ -948,14 +948,16 @@ components:
       type: object
       additionalProperties: false
       properties:
-        path:
-          description: A JSON Pointer path.
-          type: string
         op:
           description: The operation to perform.
           type: string
           enum:
             - remove
+        path:
+          description: A JSON Pointer path.
+          type: string
+        value:
+          description: The value to add, replace or test.
       required:
         - op
         - path

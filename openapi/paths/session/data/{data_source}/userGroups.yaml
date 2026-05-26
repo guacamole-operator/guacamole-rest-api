@@ -24,6 +24,11 @@ post:
   operationId: createUserGroup
   parameters:
     - $ref: ../../../../components/parameters/data_source.yaml
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../../../components/schemas/UserGroupRequest.yaml
   responses:
     200:
       description: OK.

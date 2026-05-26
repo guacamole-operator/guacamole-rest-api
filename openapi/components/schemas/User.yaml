@@ -2,6 +2,8 @@ type: object
 properties:
   username:
     type: string
+  disabled:
+    type: boolean
   lastActive:
     type: integer
     readOnly: true
@@ -9,10 +11,12 @@ properties:
     $ref: UserAttributes.yaml
 required:
   - username
+  - disabled
   - lastActive
   - attributes
 example:
   username: johndoe
+  disabled: false
   lastActive: 1678015263577
   attributes:
     guac-email-address: johndoe@example.com
@@ -23,6 +27,5 @@ example:
     access-window-start: 01:19:00
     guac-organization: Org
     access-window-end: 02:20:00
-    disabled: true
     valid-until: "2023-03-19"
     valid-from: "2023-03-05"

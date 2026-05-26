@@ -12,8 +12,3 @@ required:
   - identifier
   - disabled
   - attributes
-example:
-  identifier: group
-  disabled: false
-  attributes: {}
-

@@ -27,6 +27,7 @@ properties:
         type: string
         enum:
           - "true"
+          - ""
       max-connections:
         type: string
         nullable: true

@@ -4,6 +4,7 @@ additionalProperties:
 example:
   johndoe:
     username: johndoe
+    disabled: false
     lastActive: 1678015263577
     attributes:
       guac-email-address: johndoe@example.com
@@ -14,11 +15,11 @@ example:
       access-window-start: 01:19:00
       guac-organization: Org
       access-window-end: 02:20:00
-      disabled: true
       valid-until: "2023-03-19"
       valid-from: "2023-03-05"
   johndoe2:
     username: johndoe2
+    disabled: false
     lastActive: 1678015263577
     attributes:
       guac-email-address: johndoe2@example.com
@@ -29,6 +30,5 @@ example:
       access-window-start: 01:19:00
       guac-organization: Org
       access-window-end: 02:20:00
-      disabled: true
       valid-until: "2023-03-19"
       valid-from: "2023-03-05"

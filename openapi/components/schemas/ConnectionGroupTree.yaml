@@ -1,15 +1,33 @@
-allOf:
-  - $ref: ConnectionGroup.yaml
-  - type: object
-    properties:
-      childConnectionGroups:
-        type: array
-        items:
-          $ref: ConnectionGroup.yaml
-      childConnections:
-        type: array
-        items:
-          $ref: Connection.yaml
+type: object
+properties:
+  identifier:
+    type: string
+  name:
+    type: string
+  type:
+    type: string
+    enum:
+      - ORGANIZATIONAL
+      - BALANCING
+  activeConnections:
+    type: integer
+  childConnectionGroups:
+    type: array
+    items:
+      $ref: ConnectionGroup.yaml
+  childConnections:
+    type: array
+    items:
+      $ref: Connection.yaml
+  attributes:
+    type: object
+    additionalProperties:
+      type: string
+required:
+  - identifier
+  - name
+  - type
+  - attributes
 example:
   name: ROOT
   identifier: ROOT

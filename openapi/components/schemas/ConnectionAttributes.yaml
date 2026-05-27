@@ -4,12 +4,14 @@ properties:
     type: string
     enum:
       - "true"
+      - null
     nullable: true
   guacd-encryption:
     type: string
     enum:
       - none
       - ssl
+      - null
     nullable: true
   guacd-hostname:
     type: string

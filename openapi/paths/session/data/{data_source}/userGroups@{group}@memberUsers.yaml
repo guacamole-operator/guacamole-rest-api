@@ -1,3 +1,26 @@
+get:
+  tags:
+    - UserGroup
+  summary: List members of group.
+  description: List members of group.
+  operationId: listUserGroupMembers
+  parameters:
+    - $ref: ../../../../components/parameters/data_source.yaml
+    - $ref: ../../../../components/parameters/group.yaml
+  responses:
+    200:
+      description: OK.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../../../../components/schemas/UserGroupMember.yaml
+    403:
+      $ref: ../../../../components/responses/403.yaml
+    404:
+      $ref: ../../../../components/responses/404.yaml
+
 patch:
   tags:
     - UserGroup

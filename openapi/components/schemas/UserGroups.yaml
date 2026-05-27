@@ -4,9 +4,10 @@ additionalProperties:
 example:
   group1:
     identifier: group1
-    attributes:
-      disabled: null
+    disabled: false
+    attributes: {}
   group2:
     identifier: group2
-    attributes:
-      disabled: true
+    disabled: true
+    attributes: {}
+

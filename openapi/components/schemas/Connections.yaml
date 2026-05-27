@@ -13,7 +13,7 @@ example:
       max-connections-per-user: "10"
       weight: "10"
     identifier: "1"
-    lastActive: 1677972283000,
+    lastActive: 1677972283000
     name: "Fedora-36 (user: admin)"
     parentIdentifier: "ROOT"
     protocol: "vnc"
@@ -28,7 +28,7 @@ example:
       max-connections-per-user: "10"
       weight: "10"
     identifier: "2"
-    lastActive: 1677972283000,
+    lastActive: 1677972283000
     name: "Fedora-36 (user: admin)"
     parentIdentifier: "ROOT"
     protocol: "vnc"

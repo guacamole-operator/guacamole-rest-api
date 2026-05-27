@@ -13,15 +13,11 @@ properties:
   guac-organizational-role:
     type: string
     nullable: true
-  disabled:
-    type: string
-    enum:
-      - "true"
-    nullable: true
   expired:
     type: string
     enum:
       - "true"
+      - null
     nullable: true
   access-window-start:
     type: string
